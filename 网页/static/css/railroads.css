@@ -1,0 +1,87 @@
+.title{line-height: 30px; font-size: 18px; font-weight: 900;padding: 10px}
+.shadow-xs{box-shadow: 0px 0px 10px 0px #EEE}
+.border-faded{border: 1px solid #EFF4FA}
+.bg-logo{ position: absolute;z-index: 0;opacity: 0.03; width: 100%; height: 100%; background: url(../image/NewLogo1.png); background-repeat: repeat;background-position: center; pointer-events: none}
+.section{color: #132968;vertical-align: middle; display: inline-flex}
+.section-word{line-height: 18px; font-size: 18px;font-weight: 900 }
+.lines-mark{width: 6px; height: 18px; margin-right: 8px;border-radius:3px;  background: #132968;}
+
+.keep-all{white-space: nowrap;word-break: keep-all;width: 100%;overflow: hidden}
+.d-flex{display: inline-flex}
+.section-name{color: #132986;font-size: 12px; width: 60px !important;text-align: center;position: relative;line-height: 14px;display: inline-block}
+
+
+.section-name .inside{position: absolute;width: 100%;top:15px; text-align: center; height: calc(100% - 0px);}
+.section-name .inside div{position: absolute;top: calc(50% - 8px);width: 100%;}
+
+.section-nameR {right: -10px; position: absolute;width:10px;top:15px;height: 100%;border-left: 2px solid #132986; border-top: 1px solid; border-bottom: 1px solid;border-radius:  6px 0 0 6px  ;}
+
+.lines-box-100{position: relative;width: 100% !important; }
+.lines-box{position: relative;width: calc(100% - 60px) !important; }
+
+.lines-box:last-child 
+
+.stations{color: #132968;padding: 5px;}
+
+.lines-box-100 .station-none{position: relative;background: #FFBFBF;color: white;width: 100%;font-size: 12px; line-height: 20px; border: 0px solid #FF77A9;text-align: center}
+.lines-box .station-none{position: relative;background: rgba(255,0,0,0.5);color: white;width: 100%;font-size: 12px; line-height: 20px; border-radius: 6px 0 0 6px;text-align: center}
+
+.lines{color: #132968;  padding-right: 10px; display: inline-flex;line-height: 0;overflow: visible;white-space: nowrap;word-break: keep-all; width: 150px}
+
+.lines-icon{width: 24px; height: 24px; border-radius: 4px;text-align: center; display: inline-block;vertical-align: bottom}
+.lines-icon i{ font-size: 14px !important; line-height: 24px !important;color: white;}
+.lines-name{font-size: 14px; line-height:  24px !important; display: inline-block;vertical-align: bottom}
+
+@media screen and (max-width: 1024px) {
+	.lines{ width: 120px }
+.lines-icon{width: 16px; height: 16px; border-radius: 3px;}
+.lines-icon i{ font-size: 8px !important; line-height: 16px !important;color: white;}
+.lines-name{font-size: 12px; line-height:  16px !important;}
+}
+.station-typeA{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/SA.svg); background-position: center; background-size: cover;vertical-align: middle}
+.station-typeB{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/SB.svg); background-position: center; background-size: cover;vertical-align: middle}
+.station-typeC{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/SC.svg); background-position: center; background-size: cover;vertical-align: middle}
+.station-typeD{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/SD.svg); background-position: center; background-size: cover;vertical-align: middle}
+.station-typeE{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/SE.svg); background-position: center; background-size: cover;vertical-align: middle}
+.station-typeQ{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/B.svg); background-position: center; background-size: cover;vertical-align: middle}
+.station-typeS{display: inline-block;width: 30px;height: 30px;line-height: 30px; background: url(../image/T.svg); background-position: center; background-size: cover;vertical-align: middle}
+
+.station-mileageA,.station-mileageB,.station-mileageC,.station-mileageD,.station-mileageE{display: inline-block;width: 60px;font-size: 12px;height: 30px;line-height: 30px;vertical-align: middle;text-align: center;color: #252C34}
+
+
+.station-mileageQ,.station-mileageS{display: inline-block;width: 60px;font-size: 10px;height: 30px;line-height: 30px;vertical-align: middle;text-align: center;color: #0071C5}
+
+.station-nameA{display: inline-block;width: 170px;overflow:hidden;font-size: 14px;color:#0071C5;font-weight: 700 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameB{display: inline-block;width: 170px;overflow:hidden;font-size: 14px;color:#132968;font-weight: 500 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameC{display: inline-block;width: 170px;overflow:hidden;font-size: 12px;color:#555555;font-weight: 300 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameD{display: inline-block;width: 170px;overflow:hidden;font-size: 12px;color:#555555;font-weight: 300 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameE{display: inline-block;width: 170px;overflow:hidden;font-size: 12px;color:#555555;font-weight: 300 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameQ{display: inline-block;width: 170px;overflow:hidden;font-size: 12px;color:#0062A8;font-weight: 300 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameS{display: inline-block;width: 170px;overflow:hidden;font-size: 12px;color:#0062A8;font-weight: 300 ;height: 30px;line-height: 30px;vertical-align: middle}
+.station-nameA:hover{color: #0DA9C3}
+.station-nameB:hover,.station-nameC:hover{font-weight: 900}
+.hover:hover{background: rgba(19,41,104,0.2);}
+
+
+	.station-typeA{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+	.station-typeB{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+	.station-typeC{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+	.station-typeD{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+	.station-typeE{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+	.station-typeQ{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+	.station-typeS{display: inline-block;width: 40px;height: 40px;line-height: 40px;}
+
+	.station-mileageA,.station-mileageB,.station-mileageC,.station-mileageD,.station-mileageE{width: 80px;font-size: 16px;height: 40px;line-height: 40px;}
+	.station-mileageQ,.station-mileageS{width: 80px;font-size: 12px;height: 40px;line-height: 40px;}
+
+	.station-nameA,.station-nameB{font-size: 16px;height: 40px;line-height: 40px;}
+	.station-nameC,.station-nameD,.station-nameE,.station-nameQ,.station-nameS{font-size: 14px;height: 40px;line-height: 40px;}
+	
+	.section-name{font-size: 16px; width: 80px !important;font-weight: 900}
+
+	.section-name .inside{position: absolute;width: 100%;top:20px; text-align: center; height: calc(100% - 0px);}
+	.section-name .inside div{position: absolute;top: calc(50% - 8px);width: 100%;}
+	
+	.section-nameR {width:15px;top:20px;right: -15px}
+	.lines-box .station-none{width: 100%;min-width: 300px}
+}

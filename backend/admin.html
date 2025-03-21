@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>访问统计管理后台 - 高铁智慧科普体验空间</title>
+    <link rel="shortcut icon" href="/static/image/favicon.ico">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-header {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .stats-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .navbar {
+            background-color: #3498db;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/static/image/home/home3.jpg" alt="Logo" height="30" class="d-inline-block align-top">
+                访问统计管理后台
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- 统计卡片行 -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <i class="fa fa-users"></i> 今日访问量
+                    </div>
+                    <div class="stats-value" id="todayVisits">-</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <i class="fa fa-user"></i> 独立访客数
+                    </div>
+                    <div class="stats-value" id="uniqueVisitors">-</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <i class="fa fa-chart-line"></i> 平均停留时间
+                    </div>
+                    <div class="stats-value" id="avgStayTime">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 图表区域 -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <canvas id="visitsChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="chart-container">
+                    <canvas id="deviceChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- 访问记录表格 -->
+        <div class="table-container">
+            <h4>最近访问记录</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>访问时间</th>
+                        <th>IP地址</th>
+                        <th>访问页面</th>
+                        <th>设备信息</th>
+                    </tr>
+                </thead>
+                <tbody id="visitLogs">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 添加热门页面表格 -->
+        <div class="table-container">
+            <h4>热门页面统计</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>页面地址</th>
+                        <th>访问次数</th>
+                        <th>平均停留时间</th>
+                    </tr>
+                </thead>
+                <tbody id="popularPages">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // 添加API基础路径配置
+        const API_BASE = 'http://localhost:3001';
+
+        // 获取访问统计数据
+        async function fetchStats() {
+            try {
+                const response = await fetch(`${API_BASE}/api/visit-stats`);
+                const stats = await response.json();
+                
+                document.getElementById('todayVisits').textContent = stats.visit_count;
+                document.getElementById('uniqueVisitors').textContent = stats.unique_visitors;
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+            }
+        }
+
+        // 获取访问记录
+        async function fetchVisitLogs() {
+            try {
+                const response = await fetch(`${API_BASE}/api/visit-logs`);
+                const logs = await response.json();
+                
+                const tbody = document.getElementById('visitLogs');
+                tbody.innerHTML = logs.map(log => `
+                    <tr>
+                        <td>${new Date(log.visit_time).toLocaleString()}</td>
+                        <td>${log.ip_address}</td>
+                        <td>${log.page_url}</td>
+                        <td>${log.user_agent}</td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching logs:', error);
+            }
+        }
+
+        // 初始化图表
+        function initCharts() {
+            // 访问趋势图
+            new Chart(document.getElementById('visitsChart'), {
+                type: 'line',
+                data: {
+                    labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    datasets: [{
+                        label: '访问量',
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        fill: false,
+                        borderColor: '#3498db',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '本周访问趋势'
+                        }
+                    }
+                }
+            });
+
+            // 设备分布图
+            new Chart(document.getElementById('deviceChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['桌面端', '移动端', '平板'],
+                    datasets: [{
+                        data: [300, 150, 50],
+                        backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '访问设备分布'
+                        }
+                    }
+                }
+            });
+        }
+
+        // 在script标签中添加新的图表初始化函数
+        async function initDashboard() {
+            try {
+                const response = await fetch(`${API_BASE}/api/dashboard-stats`);
+                const data = await response.json();
+                
+                // 更新今日数据卡片
+                document.getElementById('todayVisits').textContent = data.today.visit_count || 0;
+                document.getElementById('uniqueVisitors').textContent = data.today.unique_visitors || 0;
+                document.getElementById('avgStayTime').textContent = 
+                    Math.round((data.today.avg_stay_time || 0) / 60) + ' 分钟';
+
+                // 更新访问趋势图表
+                const weeklyChart = new Chart(document.getElementById('visitsChart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.weeklyTrend.map(item => 
+                            new Date(item.stat_date).toLocaleDateString()),
+                        datasets: [{
+                            label: '访问量',
+                            data: data.weeklyTrend.map(item => item.visit_count),
+                            borderColor: '#3498db',
+                            tension: 0.1
+                        }, {
+                            label: '独立访客',
+                            data: data.weeklyTrend.map(item => item.unique_visitors),
+                            borderColor: '#2ecc71',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '最近7天访问趋势'
+                            }
+                        }
+                    }
+                });
+
+                // 更新设备分布图表
+                const deviceChart = new Chart(document.getElementById('deviceChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['桌面端', '移动端', '平板'],
+                        datasets: [{
+                            data: [
+                                data.today.desktop_count,
+                                data.today.mobile_count,
+                                data.today.tablet_count
+                            ],
+                            backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '设备访问分布'
+                            }
+                        }
+                    }
+                });
+
+                // 更新热门页面表格
+                const popularPagesElement = document.getElementById('popularPages');
+                if (popularPagesElement && data.popularPages) {
+                    const popularPagesHtml = data.popularPages.map(page => `
+                        <tr>
+                            <td>${page.page_url || '-'}</td>
+                            <td>${page.total_visits || 0}</td>
+                            <td>${Math.round((page.avg_stay_time || 0) / 60)} 分钟</td>
+                        </tr>
+                    `).join('');
+                    popularPagesElement.innerHTML = popularPagesHtml;
+                }
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        }
+
+        // 修改页面加载完成后的执行函数
+        document.addEventListener('DOMContentLoaded', () => {
+            initDashboard();
+            // 每5分钟更新一次数据
+            setInterval(initDashboard, 300000);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版图重构·经纬纵横（2011年）</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1f4e79;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #1f4e79;
+            font-size: 36px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .subtitle1 {
+            font-size: 30px;
+            color: #1f4e79;
+            margin-bottom: 40px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #1f4e79;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        p {
+            font-size: 21px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-indent: 2em;
+            /* 首行缩进 2 个字符 */
+
+        }
+
+        h3 {
+            color: #1f4e79;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 卡片式布局 */
+        .card1-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card1 {
+            flex: 1 1 calc(33.333% - 20px);
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card1 img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card1-content {
+            padding: 15px;
+        }
+
+        .card1-content h3 {
+            margin-top: 0;
+        }
+
+        /* 瀑布流布局 */
+        .masonry {
+            column-count: 3;
+            column-gap: 20px;
+            margin: 20px 0;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .masonry-content {
+            padding: 15px;
+        }
+
+
+
+        /* 悬浮折叠面板 */
+        .accordion {
+            margin: 20px 0;
+        }
+
+        .accordion-item {
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #1f4e79;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header .icon {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header .icon {
+            transform: rotate(180deg);
+            /* 箭头向下旋转 */
+        }
+
+        .accordion-content {
+            padding: 15px;
+            display: none;
+        }
+
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+
+
+        .image-caption {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        img {
+            width: 70%;
+            /* 宽度为上一级 div 的 70% */
+            height: auto;
+            /* 高度自动调整，保持比例 */
+            display: block;
+            /* 避免图片下方有空白 */
+            border-radius: 8px;
+            /* 圆角效果 */
+            margin: 0 auto;
+            /* 水平居中 */
+        }
+
+        #game-container {
+            width: 680px;
+            /* 4列 * 120px（卡片宽度 + 边距） */
+            height: 510px;
+            /* 3行 * 120px（卡片高度 + 边距） */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* 4列 */
+            grid-template-rows: repeat(3, 1fr);
+            /* 3行 */
+            gap: 10px;
+            /* 卡片之间的间距 */
+            margin: 50px auto;
+            /* 居中 */
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 150px;
+            /* 卡片宽度 */
+            height: 150px;
+            /* 卡片高度 */
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            visibility: hidden;
+            /* 匹配后隐藏卡片，但保留占位符 */
+        }
+
+        .card .front,
+        .card .back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .card .front {
+            background: #1f4e79;
+            /* 卡片正面颜色 */
+            color: #fff;
+        }
+
+        .card .back {
+            background: #C0392B;
+            /* 卡片背面颜色 */
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        .three {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-indent: 2em;
+            /* 首行缩进 2 个字符 */
+
+        }
+
+        .accordion-content p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 主标题和副标题 -->
+        <h1>版图重构·经纬纵横（2011年）</h1>
+        <div class="subtitle1">从京沪高铁到“四纵四横”，见证中国高铁的辉煌成就</div>
+        <p> 2011年是中国高铁发展的重要一年。这一年，中国高铁网络进一步扩展，形成了“四纵四横”的骨干网络布局。京沪高铁、武广高铁等重要线路的建成通车，标志着中国高铁进入了快速发展的新阶段。</p>
+        <!-- 大图 -->
+        <div style="position: relative;">
+            <!-- 图片 -->
+            <img src="static/image/exploration/4-1.jpeg">
+            <div class="image-caption">2011年开通高铁线路示意图</div>
+        </div>
+
+
+
+        <!-- 京沪高铁通车 -->
+        <h2>京沪高铁通车</h2>
+        <p>2011年6月30日，京沪高铁正式通车运营。这条全长1318公里的高速铁路，连接了北京和上海两大经济中心，设计时速为350公里，将两地之间的旅行时间从原来的10小时缩短至4小时左右。</p>
+        <!-- 卡片式布局 -->
+        <div class="card1-container">
+            <div class="card1">
+                <img src="static/image/exploration/4-3.jpg">
+                <div class="card1-content">
+                    <h3>2006年京沪高速铁路立项</h3>
+                    <p class="three">2006年2月22日，国务院第126次常务会议批准京沪高速铁路立项。2007年12月27日，京沪高速铁路股份有限公司在北京创立。</p>
+                </div>
+            </div>
+            <div class="card1">
+                <img src="static/image/exploration/4-4.jpg">
+                <div class="card1-content">
+                    <h3>2008年京沪高铁全线开工</h3>
+                    <p class="three">2008年4月18日，京沪高铁全线开工。2010年12月3日，“ 和谐号”CRH380A新一代高速动车组在枣庄至蚌埠先导段创造了486.1公里/小时的最高速度。
+                    </p>
+                </div>
+            </div>
+            <div class="card1">
+                <img src="static/image/exploration/4-6.jpg">
+                <div class="card1-content">
+                    <h3>2011年京沪高速铁路正式通车运营</h3>
+                    <p class="three">2011年6月30日15时，京沪高铁正式开通运营，1318公里，4小时48分，中国两大城市的心理距离即将再次刷新
+                    </p>
+                </div>
+            </div>
+        </div>
+        <p>京沪高铁是我国客流量最大、最繁忙的高铁线路，开通运营十年来，全线累计安全运送旅客13.5亿人次、全线累计开行列车近120万列、全线累计行程超过15.8亿公里，相当于绕赤道跑了近4万圈。</p>
+        <p>京沪高铁提升旅行的获得感幸福感。大大拉近了沿线城市间的时空距离，转变了人们的出行观念，改变了人们的生活方式，“同城效应”优势凸显，“千里京沪一日还”成为日常，“双城生活”成为可能。</p>
+
+
+
+        <!-- “四纵四横”网络 -->
+        <h2>“四纵四横”网络</h2>
+        <p>2011年，中国高铁的“四纵四横”骨干网络初步形成，覆盖了全国主要经济区域，极大地促进了区域间的经济交流和人员往来。</p>
+        <!-- 大图 -->
+        <div style="position: relative;">
+            <!-- 图片 -->
+            <img src="static/image/exploration/4-2.jpg">
+            <div class="image-caption">“四纵四横”高铁网络</div>
+        </div>
+
+        <!-- 悬浮折叠面板 -->
+        <div class="accordion">
+            <h3>"四纵"</h3>
+            <!-- 京沪高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>京沪高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：北京—上海</p>
+                    <p><strong>长度</strong>：1318公里</p>
+                    <p><strong>设计时速</strong>：350公里</p>
+                    <p><strong>通车时间</strong>：2011年6月30日</p>
+                    <p><strong>连接站点</strong>：北京南站、廊坊站、天津南站、沧州西站、德州东站、济南西站、泰安站、曲阜东站、滕州东站、枣庄站、徐州东站、宿州东站、蚌埠南站、定远站、滁州站、南京南站、镇江南站、丹阳北站、常州北站、无锡东站、苏州北站、上海虹桥站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 京广高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>京广高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：北京—广州</p>
+                    <p><strong>长度</strong>：2298公里</p>
+                    <p><strong>设计时速</strong>：350公里</p>
+                    <p><strong>通车时间</strong>：2012年12月26日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：北京西站、涿州东站、高碑店东站、保定东站、定州东站、正定机场站、石家庄站、高邑西站、邢台东站、邯郸东站、安阳东站、鹤壁东站、新乡东站、郑州东站、许昌东站、漯河西站、驻马店西站、信阳东站、孝感北站、武汉站、咸宁北站、岳阳东站、汨罗东站、长沙南站、株洲西站、衡阳东站、耒阳西站、郴州西站、韶关站、清远站、广州南站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 京哈高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>京哈高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：北京—哈尔滨</p>
+                    <p><strong>长度</strong>：约1250公里</p>
+                    <p><strong>设计时速</strong>：350公里</p>
+                    <p><strong>通车时间</strong>：2012年12月1日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：北京站、北京朝阳站、顺义西站、怀柔南站、密云站、兴隆西站、安匠站、承德南站、平泉北站、牛河梁站、喀左站、朝阳站、北票站、阜新站、黑山北站、新民北站、沈阳北站、铁岭西站、开原西站、昌图西站、四平东站、公主岭南站、长春西站、德惠西站、扶余北站、双城北站、哈尔滨西站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 杭福深高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>杭福深高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：杭州—福州—深圳</p>
+                    <p><strong>长度</strong>：约1450公里</p>
+                    <p><strong>设计时速</strong>：250-350公里</p>
+                    <p><strong>通车时间</strong>：2013年12月28日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：杭州东站、绍兴北站、余姚北站、宁波站、奉化站、宁海站、三门县站、临海站、台州站、温岭站、雁荡山站、乐清站、温州南站、瑞安站、平阳站、苍南站、福鼎站、太姥山站、福安站、宁德站、罗源站、连江站、福州站、福州南站、莆田站、泉州站、晋江站、厦门北站、漳州站、漳浦站、云霄站、诏安站、潮汕站、普宁站、汕尾站、惠州南站、深圳北站
+                    </p>
+                </div>
+            </div>
+            <h3>"四横"</h3>
+            <!-- 徐兰高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>徐兰高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：徐州—兰州</p>
+                    <p><strong>长度</strong>：约1400公里</p>
+                    <p><strong>设计时速</strong>：250-350公里</p>
+                    <p><strong>通车时间</strong>：2017年7月9日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：徐州东站、萧县北站、永城北站、砀山南站、商丘站、民权北站、兰考南站、开封北站、郑州东站、郑州西站、巩义南站、洛阳龙门站、渑池南站、三门峡南站、灵宝西站、华山北站、渭南北站、西安北站、咸阳秦都站、杨陵南站、岐山站、宝鸡南站、东岔站、天水南站、秦安站、通渭站、定西北站、兰州西站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 沪昆高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>沪昆高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：上海—昆明</p>
+                    <p><strong>长度</strong>：2252公里</p>
+                    <p><strong>设计时速</strong>：350公里</p>
+                    <p><strong>通车时间</strong>：2016年12月28日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：上海虹桥站、松江南站、嘉兴南站、杭州东站、诸暨站、义乌站、金华站、龙游站、衢州站、江山站、玉山南站、上饶站、弋阳站、鹰潭北站、抚州东站、进贤南站、南昌西站、高安站、新余北站、宜春站、萍乡北站、醴陵东站、长沙南站、湘潭北站、韶山南站、娄底南站、邵阳北站、新化南站、溆浦南站、怀化南站、芷江站、新晃西站、铜仁南站、三穗站、凯里南站、贵定北站、贵阳东站、贵阳北站、平坝南站、安顺西站、关岭站、普安县站、盘州站、富源北站、曲靖北站、嵩明站、昆明南站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 青太高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>青太高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：青岛—太原</p>
+                    <p><strong>长度</strong>：约770公里</p>
+                    <p><strong>设计时速</strong>：250公里</p>
+                    <p><strong>通车时间</strong>：2014年12月28日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：青岛站、青岛北站、潍坊站、青州市站、淄博站、济南站、济南西站、泰安站、曲阜东站、滕州东站、枣庄站、徐州东站、萧县北站、永城北站、砀山南站、商丘站、民权北站、兰考南站、开封北站、郑州东站、郑州西站、巩义南站、洛阳龙门站、渑池南站、三门峡南站、灵宝西站、华山北站、渭南北站、西安北站、咸阳秦都站、杨陵南站、岐山站、宝鸡南站、东岔站、天水南站、秦安站、通渭站、定西北站、兰州西站
+                    </p>
+                </div>
+            </div>
+
+            <!-- 沪汉蓉高铁 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>沪汉蓉高铁</span>
+                    <span class="icon">&#9660;</span> <!-- 向下箭头 -->
+                </div>
+                <div class="accordion-content">
+                    <p><strong>线路</strong>：上海—武汉—成都</p>
+                    <p><strong>长度</strong>：约1600公里</p>
+                    <p><strong>设计时速</strong>：200-350公里</p>
+                    <p><strong>通车时间</strong>：2014年7月1日（部分段在2011年已通车）</p>
+                    <p><strong>连接站点</strong>：上海虹桥站、苏州北站、无锡东站、常州北站、丹阳北站、镇江站、南京南站、全椒站、合肥站、六安站、金寨站、麻城北站、红安西站、汉口站、汉川站、天门南站、仙桃西站、潜江站、荆州站、枝江北站、宜昌东站、恩施站、利川站、石柱县站、丰都站、涪陵北站、重庆北站、合川站、潼南站、遂宁站、成都东站
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion">
+            <p>“四纵四横”高铁网络是中国高铁发展的核心布局，覆盖了全国主要经济区域，极大地提升了交通效率和区域经济一体化水平。2011年，这一网络初步形成，标志着中国高铁进入了快速发展的新阶段，也为全球高铁技术的发展提供了中国方案。
+            </p>
+        </div>
+        <script>
+            // 悬浮折叠面板逻辑
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                item.querySelector('.accordion-header').addEventListener('click', () => {
+                    // 关闭其他面板
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前面板
+                    item.classList.toggle('active');
+                });
+            });
+        </script>
+        <script>
+            // 悬浮折叠面板逻辑
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                item.querySelector('.accordion-header').addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        </script>
+
+
+        <!-- 记忆卡牌小游戏 -->
+        <h2>记忆卡牌小游戏</h2>
+        <div class="subtitle">找出一样的乘务员吧！</div>
+
+        <div id="game-container"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const gameContainer = document.getElementById('game-container');
+                const cardCount = 12; // 12张卡片
+                let flippedCards = [];
+                let matchedCards = [];
+
+                // 图片路径数组（6对图片）
+                // const images = [
+                //     '01.jpg', '02.jpg', '03.jpg',
+                //     '04.jpg', '05.jpg', '06.jpg'
+                // ];
+                const images = [
+                    'static/image/exploration/4-7-1.jpg',
+                    'static/image/exploration/4-7-2.jpg',
+                    'static/image/exploration/4-7-3.jpg',
+                    'static/image/exploration/4-7-4.jpg',
+                    'static/image/exploration/4-7-5.jpg',
+                    'static/image/exploration/4-7-6.jpg'
+                ];
+                // 生成卡片对
+                const cardPairs = [...images, ...images];
+
+                // 洗牌
+                const shuffledCards = shuffle(cardPairs);
+
+                // 创建并添加卡片到游戏容器
+                shuffledCards.forEach((value, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.value = value;
+
+                    const front = document.createElement('div');
+                    front.classList.add('front');
+                    front.textContent = '?'; // 卡片正面显示问号
+
+                    const back = document.createElement('div');
+                    back.classList.add('back');
+                    // 卡片背面显示图片
+                    back.style.backgroundImage = `url(${value})`;
+                    back.style.backgroundSize = 'cover'; // 图片适应卡片大小
+
+                    card.appendChild(front);
+                    card.appendChild(back);
+                    card.addEventListener('click', flipCard);
+                    gameContainer.appendChild(card);
+                });
+
+                // 洗牌函数
+                function shuffle(array) {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                    return array;
+                }
+
+                // 翻转卡片函数
+                function flipCard() {
+                    if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                        this.classList.add('flipped');
+                        flippedCards.push(this);
+
+                        if (flippedCards.length === 2) {
+                            checkForMatch();
+                        }
+                    }
+                }
+
+                // 检查是否匹配
+                function checkForMatch() {
+                    const [card1, card2] = flippedCards;
+                    const value1 = card1.dataset.value;
+                    const value2 = card2.dataset.value;
+
+                    if (value1 === value2) {
+                        // 匹配成功，隐藏卡片
+                        setTimeout(() => {
+                            card1.classList.add('matched');
+                            card2.classList.add('matched');
+                            matchedCards.push(card1, card2);
+                            flippedCards = [];
+
+                            // 检查是否全部匹配
+                            if (matchedCards.length === cardCount) {
+                                endGame(true);
+                            }
+                        }, 500);
+                    } else {
+                        // 不匹配，翻转回背面
+                        setTimeout(() => {
+                            card1.classList.remove('flipped');
+                            card2.classList.remove('flipped');
+                            flippedCards = [];
+                        }, 1000);
+                    }
+                }
+
+                // 游戏结束
+                function endGame(isWin) {
+                    alert(isWin ? '你赢了！' : '游戏结束！');
+                    resetGame();
+                }
+
+                // 重置游戏
+                function resetGame() {
+                    gameContainer.innerHTML = '';
+                    flippedCards = [];
+                    matchedCards = [];
+                    shuffledCards.forEach((value, index) => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.dataset.value = value;
+
+                        const front = document.createElement('div');
+                        front.classList.add('front');
+                        front.textContent = '?';
+
+                        const back = document.createElement('div');
+                        back.classList.add('back');
+                        back.style.backgroundImage = `url(${value})`;
+                        back.style.backgroundSize = 'cover';
+
+                        card.appendChild(front);
+                        card.appendChild(back);
+                        card.addEventListener('click', flipCard);
+                        gameContainer.appendChild(card);
+                    });
+                }
+            });
+        </script>
+    </div>
+
+    <div class="page" id="page2">
+        <!-- 将通过 JavaScript 加载 Exploration2 的内容 -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            let isTransitioning = false;
+            let hasReachedBottom = false;
+
+            // 预加载 Exploration2 的内容
+            fetch('Exploration5.html')
+                .then(response => response.text())
+                .then(html => {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+                    const content = tempDiv.querySelector('body').innerHTML;
+                    page2.innerHTML = content;
+                });
+
+            window.addEventListener('scroll', function () {
+                if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+                    hasReachedBottom = true;
+                }
+            });
+
+            window.addEventListener('wheel', function (event) {
+                if (hasReachedBottom && event.deltaY > 0 && !isTransitioning) {
+                    isTransitioning = true;
+                    document.body.style.overflow = 'hidden';
+                    window.scrollTo(0, 0);
+
+                    // 同时开始两个页面的动画
+                    page1.classList.add('slide-up');
+                    page2.style.transform = 'translateY(-100%)';
+
+                    // 动画结束后跳转
+                    setTimeout(() => {
+                        window.location.href = 'Exploration5.html';
+                    }, 4000);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

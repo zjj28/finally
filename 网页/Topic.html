@@ -1,0 +1,795 @@
+<style>
+    .globe-box {
+        position: fixed;
+        z-index: 114514;
+        right: 10px;
+        top: 10px;
+        padding: 0px;
+        height: 20px;
+        color: #AAA;
+        border: 1px solid #FFF;
+        background-color: rgba(155, 145, 146, 0.30);
+        font-size: 12px;
+        overflow: hidden
+    }
+
+    .globe-box:hover {
+        height: auto
+    }
+
+    .globe {
+        padding: 0px 5px;
+        background-color: rgba(249, 245, 246, 0.30);
+        text-align: center
+    }
+
+    .globe:first-child {
+        border-radius: 3px 0 0 3px
+    }
+
+    .globe:last-child {
+        border-radius: 0 3px 3px 0
+    }
+
+    .globe a {
+        color: white;
+    }
+
+    .globe a:hover {
+        color: lightgoldenrodyellow;
+    }
+</style>
+
+
+<div class="globe-box border-radius-s hidden" style="right:80px">
+    <div class="globe"><a href="/User/Login/?LVRvcGljLWluZGV4LnBocA==" class="tablink">&nbsp;</a></div>
+</div>
+
+
+
+<meta charset="utf-8">
+
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<script src="https://journey.china-emu.cn/assets/js/jquery.js"></script>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta property="og:description" content="">
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/templatemo-style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/templatemo-style.css">
+    <link href="static/css/edit.css" rel="stylesheet">
+
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const toTop = window.scrollY;
+            if (document.body.clientWidth >= 768) {
+                if (toTop == 20 || toTop < 20) { document.getElementById('fix-m-b').style.top = "20px"; document.getElementById('fix-m').style.width = ""; document.getElementById('fix-m').style.borderRadius = ""; }
+                else { document.getElementById('fix-m-b').style.top = "0px"; document.getElementById('fix-m').style.width = "100%"; document.getElementById('fix-m').style.borderRadius = "0"; }
+            }
+            else { }
+            if (toTop > 300) { document.getElementById('totop').style.bottom = "10%"; }
+            else { document.getElementById('totop').style.bottom = "-50px"; }
+        });
+    </script>
+</head>
+
+<body id="page-top">
+
+    <div class="header-m" align="center" id="fix-m-b">
+        <div class="header-m-box shadow" id="fix-m">
+            <div class="header-logo-m-box"><a class="header-logo-m shadow" href="index.html" id="logo"></a></div>
+
+            <a class="header-link-m " href="CR.html">
+                动车风采
+            </a>
+            <a class="header-link-m " href="RailRoads.html">
+                线路探秘
+            </a>
+
+            <a class="header-link-m" href="index1.html">
+                孪生视界
+            </a>
+            <a class="header-link-m " href="Topic.html">
+                人物百科
+            </a>
+        </div>
+    </div>
+
+
+    <title>著名人物</title>
+    <div class="pic-bg-H"
+        style="background-image: url(static/image/renwu/fengmian.jpg); background-position: center; background-size: cover;">
+        <div class="overlay">
+            <div class="page-title" align="center" style="margin-top: -40px;"> <!-- 向上挪动 -->
+                <h2
+                    style="font-size: 40px; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); white-space: nowrap;">
+                    钢铁长河的追光者</h2>
+                <div class="seperation"></div>
+            </div>
+        </div>
+    </div>
+    <div class="seperation"></div>
+    <div class="container inside-nav">
+        <div class="d-inline-block"><a href="index.html"><i class="fa fa-home text-primary"></i> 主页 </a></div>
+        <div class="d-inline-block"><i class="fa fa-angle-right text-primary"></i> <span class="last">人物介绍</span></div>
+    </div>
+    <div class="seperation"></div>
+    <style>
+        .striped {
+            padding: 5px;
+        }
+
+        .striped:nth-child(2n) {
+            background: #FFFFFF
+        }
+    </style>
+    <div class="container">
+
+        <div class="section-title">
+            <h2 class="p-a-0 font-weight-bold">铁路先驱：时代的钢铁诗人</h2>
+            <p style="font-size: 18px;">——以智慧与热血铸就交通脉络 </p>
+        </div>
+
+        <p style="font-size: 16px; line-height: 1.8;">
+            他们，是坚毅的高铁开拓者，以钢铁意志与不懈努力，书写人类文明的高铁篇章。在科技浪潮中，凭借创新精神突破地理限制。往昔蒸汽机车时代，先驱者无畏前行，深入荒野勘测、规划。面对险峻山峰与湍急河流，巧妙设计线路、搭建桥梁，将荒野化作通途。铁路，绝非轨道的简单延伸，它凝聚着建设者的心血、闪耀着科研人员的智慧，是人类不屈意志与智慧结晶的见证。从早期铁路到如今风驰电掣的高铁，这一路是奉献者铸就的传奇，激励着后人奋进不止。
+        </p>
+
+    </div>
+    <!-- 添加铁路历史人物卡片组件 -->
+    <style>
+        /* 更新卡片和图片样式 */
+        .overlay {
+            position: absolute;
+            /* 绝对定位 */
+            top: 60%;
+            /* 垂直居中 */
+            left: 37.5%;
+            /* 水平居中 */
+            transform: translate(-50%, -50%);
+            /* 使元素居中 */
+            color: white;
+            /* 字体颜色 */
+            text-align: center;
+            /* 文本居中 */
+        }
+
+        .page-title {
+            margin-top: -50px;
+            /* 向上挪动 */
+        }
+
+        .person-card {
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .card-front {
+            background-color: #fff;
+            padding: 0;
+            /* 移除内边距使图片可以完全填充 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .person-image {
+            width: 100%;
+            /* 图片宽度占满卡片 */
+            height: 60%;
+            /* 高度占卡片的60% */
+            object-fit: cover;
+            /* 保持图片比例并填充空间 */
+            border-radius: 15px 15px 0 0;
+            /* 只保留上方圆角 */
+            margin: 0;
+            /* 移除边距 */
+        }
+
+        .card-content {
+            padding: 15px;
+            width: 100%;
+            height: 40%;
+            /* 文字内容占40% */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .person-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+            color: #132968;
+        }
+
+        .person-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .person-description {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+
+        .people-section {
+            margin: 40px 0;
+            padding: 0 15px;
+        }
+
+        .people-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #132968;
+            text-align: center;
+        }
+
+        .people-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .person-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-back {
+            background-color: #132968;
+            color: white;
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #fff;
+            color: #132968;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            background-color: #f0f0f0;
+        }
+
+        @media (max-width: 1200px) {
+            .person-card {
+                width: 280px;
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .person-card {
+                width: 260px;
+                height: 360px;
+            }
+
+            .person-name {
+                font-size: 18px;
+            }
+
+            .person-title {
+                font-size: 14px;
+            }
+
+            .person-description {
+                font-size: 12px;
+            }
+        }
+    </style>
+
+    <!-- 修改卡片HTML结构 -->
+    <div class="people-section">
+        <div class="people-title">国内铁路先驱</div>
+        <div class="people-cards">
+            <!-- 詹天佑卡片 -->
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/zhantianyou.jpg" class="person-image" alt="詹天佑">
+                        <div class="card-content">
+                            <div class="person-name">詹天佑</div>
+                            <div class="person-title">中国近代铁路之父</div>
+                            <div class="person-description">
+                                中国近代著名铁路工程专家，京张铁路总工程师
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            詹天佑(1861-1919)是中国近代著名铁路工程专家。他主持修建了京张铁路，创造性地解决了多项技术难题，被誉为"中国近代铁路之父"。
+                        </div>
+                        <a href="zhantianyou.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 茅以升卡片 -->
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/caojianyou.jpg" class="person-image" alt="茅以升">
+                        <div class="person-name">曹建猷</div>
+                        <div class="person-title">中国铁路电气化的开路先锋 </div>
+                        <div class="person-description">
+                            中国科学院院士，"中国铁路电气化之父"
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            曹建猷 (1917-1997) 是中国铁路电气化专家，主持宝成铁路电气化制式选择，提出采用 25 千伏工频交流制，为中国高铁电气化奠定基础。该制式后成为国家标准，支撑中国高铁实现
+                            350 公里 / 小时的世界领先速度，被誉为 "中国铁路电气化之父"。
+                        </div>
+                        <a href="caojianyou.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/sunyongfu.jpg" class="person-image" alt="孙永福">
+                        <div class="person-name">孙永福</div>
+                        <div class="person-title">中国高铁铁路工程专家</div>
+                        <div class="person-description">
+                            中国工程院院士，被誉为"中国高铁总设计师"
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            孙永福(1941-)是中国工程院院士，为中国高速铁路技术发展和工程建设做出卓越贡献，他主持完成了我国第一条高速铁路工程技术博标准体系的建立，被誉为"中国高铁总设计师"。
+                        </div>
+                        <a href="sunyongfu.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/liuyoumei.jpg" class="person-image" alt="贺恩民">
+                        <div class="person-name">刘友梅</div>
+                        <div class="person-title">中国电力机车之父</div>
+                        <div class="person-description">
+                            中国工程院院士，中车株洲电力机车研究所原所长，我国轨道交通装备技术主要奠基人之一
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            刘友梅(1938-)是中国工程院院士，长期从事轨道交通装备研发，主持研制了我国首台交流传动电力机车"韶山9型"，推动中国电力机车实现从直流到交流的技术跨越，被誉为"中国电力机车之父"。
+                        </div>
+                        <a href="liuyoumei.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/dingrongjun.jpg" class="person-image" alt="丁荣根">
+                        <div class="card-content">
+                            <div class="person-name">丁荣军</div>
+                            <div class="person-title">中国高铁牵引供电系统专家</div>
+                            <div class="person-description">
+                                中国工程院院士，轨道交通牵引电传动和网络控制专家
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            丁荣军(1961-)是中国工程院院士，在高速铁路牵引供电系统领域做出重大贡献，主持研发了我国高铁供电系统关键技术。
+                        </div>
+                        <a href="dingrongjun.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/chenyingxian.jpg" class="person-image" alt="张文元">
+                        <div class="card-content">
+                            <div class="person-name">陈应先</div>
+                            <div class="person-title">中国高铁拓荒者</div>
+                            <div class="person-description">
+                                全国勘察设计大师，铁四院原总工程师，推动京沪高铁等项目，编译《高速铁路》
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            陈应先 (1932-2021)
+                            是中国高铁早期技术开拓者，编译中国首部《高速铁路》专著，提出长江高铁隧道越江方案，参与广深准高铁、京沪高铁等重大项目技术论证，为中国高铁技术体系构建和工程实践提供关键支撑。
+                        </div>
+                        <a href="chenyingxian.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="people-section">
+        <div class="people-title">国际铁路先驱</div>
+        <div class="people-cards">
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/stephenson.jpg" class="person-image" alt="乔治·斯蒂芬森">
+                        <div class="person-name">乔治·斯蒂芬森</div>
+                        <div class="person-title">蒸汽机车之父</div>
+                        <div class="person-description">
+                            发明了"火箭号"蒸汽机车，开创了铁路时代
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            乔治·斯蒂芬森(1781-1848)是英国工程师，发明了著名的"火箭号"蒸汽机车，被誉为"铁路之父"。
+                        </div>
+                        <a href="stephenson.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/brunel.jpg" class="person-image" alt="伊萨姆巴德·布鲁内尔">
+                        <div class="person-name">伊萨姆巴德·布鲁内尔</div>
+                        <div class="person-title">英国工程天才</div>
+                        <div class="person-description">
+                            设计建造了大西部铁路等多项工程奇迹
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            布鲁内尔(1806-1859)是英国著名工程师，设计了大西部铁路，在铁路工程领域创造了多项技术突破。
+                        </div>
+                        <a href="brunel.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="static/image/renwu/shinkansen.jpg" class="person-image" alt="十河信二">
+                        <div class="person-name">十河信二</div>
+                        <div class="person-title">新干线之父</div>
+                        <div class="person-description">
+                            推动了日本新干线高速铁路的建设
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="person-description">
+                            十河信二(1884-1981)是日本铁路界重要人物，推动了东海道新干线的建设，开创了世界高速铁路的先河。
+                        </div>
+                        <a href="shinkansen.html" class="read-more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="chat-section">
+        <style>
+            .chat-section {
+                margin: 40px 0;
+                padding: 20px;
+                background: #f8f9fa;
+                border-radius: 15px;
+            }
+
+            .chat-title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #132968;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .quick-questions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+
+            .question-btn {
+                padding: 8px 15px;
+                background: #fff;
+                border: 1px solid #132968;
+                border-radius: 20px;
+                color: #132968;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .question-btn:hover {
+                background: #132968;
+                color: #fff;
+            }
+
+            .chat-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .chat-messages {
+                height: 400px;
+                overflow-y: auto;
+                padding: 20px;
+                border-bottom: 1px solid #eee;
+            }
+
+            .message {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: flex-start;
+            }
+
+            .message.user {
+                flex-direction: row-reverse;
+            }
+
+            .message-content {
+                max-width: 70%;
+                padding: 10px 15px;
+                border-radius: 15px;
+                background: #f0f2f5;
+                margin: 0 10px;
+                transition: all 0.1s ease-out;
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+
+            .message.user .message-content {
+                background: #132968;
+                color: #fff;
+            }
+
+            .chat-input {
+                display: flex;
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .chat-input textarea {
+                flex: 1;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                resize: none;
+                height: 40px;
+            }
+
+            .send-btn {
+                padding: 0 20px;
+                background: #132968;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .send-btn:hover {
+                background: #0e1d4a;
+            }
+        </style>
+
+        <div class="chat-title">铁路知识问答</div>
+
+        <div class="quick-questions">
+            <button class="question-btn" onclick="askAbout('詹天佑')">关于詹天佑</button>
+            <button class="question-btn" onclick="askAbout('曹建猷')">关于曹建猷</button>
+            <button class="question-btn" onclick="askAbout('孙永福')">关于孙永福</button>
+            <button class="question-btn" onclick="askAbout('刘友梅')">关于刘友梅</button>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- 消息将在这里动态添加 -->
+            </div>
+            <div class="chat-input">
+                <textarea id="userInput" placeholder="请输入您的问题..."></textarea>
+                <button class="send-btn" onclick="sendMessage()">发送</button>
+            </div>
+        </div>
+
+        <script>
+            // 添加格式化函数，保留换行符
+            function cleanMarkdown(text) {
+                return text
+                    .replace(/\*\*/g, '') // 删除加粗符号 **
+                    .replace(/\*/g, '')   // 删除斜体符号 *
+                    .replace(/###/g, '\n') // 将三级标题符号替换为换行
+                    .replace(/##/g, '\n')  // 将二级标题符号替换为换行
+                    .replace(/#/g, '\n')   // 将一级标题符号替换为换行
+                    .trim();              // 清理首尾空格
+            }
+
+            async function askAbout(person) {
+                const questions = {
+                    '詹天佑': '请介绍一下詹天佑及其对中国铁路发展的贡献。',
+                    '曹建猷': '请介绍一下曹建猷及其在铁路桥梁建设方面的成就。',
+                    '孙永福': '请介绍一下孙永福院士对中国高铁发展的贡献。',
+                    '刘友梅': '请介绍一下刘友梅院士在铁路电气化方面的成就。'
+                };
+                document.getElementById('userInput').value = questions[person];
+                sendMessage();
+            }
+
+            async function sendMessage() {
+                const input = document.getElementById('userInput');
+                const message = input.value.trim();
+                if (!message) return;
+
+                // 添加用户消息
+                addMessage(message, true);
+                input.value = '';
+
+                try {
+                    console.log('Sending request...');
+                    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer sk-7a3e80430bc24a2c9040d1c9da97b399'
+                        },
+                        body: JSON.stringify({
+                            model: "deepseek-chat",
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: "你是一个铁路知识专家。请在每个主要段落后使用两个换行符（\n\n）分隔。在列举要点时，每个要点后使用一个换行符（\n）。"
+                                },
+                                {
+                                    role: "user",
+                                    content: message
+                                }
+                            ],
+                            stream: true
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    // 创建响应消息div
+                    const messagesDiv = document.getElementById('chatMessages');
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message';
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = 'message-content';
+                    messageDiv.appendChild(contentDiv);
+                    messagesDiv.appendChild(messageDiv);
+
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) break;
+
+                        const chunk = decoder.decode(value, { stream: true });
+                        const lines = chunk.split('\n');
+
+                        for (const line of lines) {
+                            if (line.startsWith('data: ')) {
+                                const data = line.slice(6);
+                                if (data === '[DONE]') continue;
+
+                                try {
+                                    const parsed = JSON.parse(data);
+                                    const content = parsed.choices[0].delta.content;
+                                    if (content) {
+                                        contentDiv.textContent += content;
+                                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                                    }
+                                } catch (e) {
+                                    console.error('Error parsing JSON:', e);
+                                }
+                            }
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('Error details:', error);
+                    addMessage(`抱歉，发生了错误: ${error.message}`, false);
+                }
+            }
+
+            // 添加必要的样式
+            const style = document.createElement('style');
+            style.textContent = `
+            .message-content {
+                white-space: pre-wrap;
+                word-break: break-word;
+                line-height: 1.8;
+                padding: 15px;
+                font-size: 14px;
+            }
+        `;
+            document.head.appendChild(style);
+
+            function addMessage(text, isUser) {
+                const messagesDiv = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user' : ''}`;
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = text;
+
+                messageDiv.appendChild(contentDiv);
+                messagesDiv.appendChild(messageDiv);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
+
+            // 支持按Enter发送消息
+            document.getElementById('userInput').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+        </script>
+    </div>
+
+
+
+
+</body>
+
+</html>

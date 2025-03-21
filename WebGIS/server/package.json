@@ -1,0 +1,14 @@
+{
+  "name": "webgis-server",
+  "version": "1.0.0",
+  "description": "高铁站点WebGIS系统API服务器",
+  "main": "api.js",
+  "type": "module",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+} 

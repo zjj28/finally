@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>站点连接关系</title>
+    <script src="./static/js/jquery-3.6.0.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/echarts-nightly@5.1.2-dev.20210512/dist/echarts.min.js"></script>
+    <script type="text/javascript"
+        src="https://api.map.baidu.com/api?v=3.0&ak=5c3qkRhHUBf4eokNGVi13AACExyU0nhs"></script>
+    <script type="text/javascript" src="./static/js/bmap.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="height: 8%; font-size: 20px; text-align:center">
+    <a class="navbar-brand mr-auto" href="/" style="font-size: 25px">列车信息</a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/StationVis">站点信息</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/TrainVis">列车信息</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/AccessVis">站点可达性</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/ChartVis">站点连接关系</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/PathVis">路径规划</a>
+        </li>
+    </ul>
+</nav>
+
+<body style="height: 92%; margin: 0">
+    <!-- 通用的站点信息面板模板 -->
+    <div id="station-panel" style="display: none; position: fixed; top: 100px; 
+        background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+        width: 300px; z-index: 1000;">
+        <h3 id="station-name"></h3>
+        <div id="station-info" class="station-info"></div>
+    </div>
+
+    <div id="main" style="height: 100%; margin: 0"></div>
+    <script type="text/javascript">
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        // 站点信息数据
+        const stationData = {
+            '哈尔滨': {
+                address: '哈尔滨市南岗区铁路街1号',
+                level: '特等站',
+                openTime: '1899年',
+                description: '哈尔滨站是中国铁路哈尔滨局集团有限公司管辖的特等站，是东北地区最大的铁路枢纽之一。'
+            },
+            '长春': {
+                address: '长春市朝阳区站前街1号',
+                level: '特等站',
+                openTime: '1909年',
+                description: '长春站是中国铁路哈尔滨局集团有限公司管辖的特等站，是吉林省最大的铁路客运站。'
+            },
+            '沈阳': {
+                address: '沈阳市和平区北站路102号',
+                level: '特等站',
+                openTime: '1899年',
+                description: '沈阳站是中国铁路沈阳局集团有限公司管辖的特等站，是东北地区重要的铁路枢纽。'
+            },
+            '大连': {
+                address: '大连市中山区长江路901号',
+                level: '特等站',
+                openTime: '1903年',
+                description: '大连站是中国铁路沈阳局集团有限公司管辖的特等站，是东北地区重要的沿海铁路枢纽。'
+            },
+            '北京': {
+                address: '北京市东城区毛家湾胡同甲13号',
+                level: '特等站',
+                openTime: '1959年',
+                description: '北京站是中国铁路北京局集团有限公司管辖的特等站，是中国最重要的铁路客运站之一。'
+            },
+            '昆明南': {
+                address: '云南省昆明市官渡区昆明南站',
+                level: '一等站',
+                openTime: '2016年',
+                description: '昆明南站是云南省最大的高铁站，是沪昆高铁、大瑞铁路等多条铁路的重要枢纽站，也是连接中国与东南亚铁路网的重要门户。'
+            },
+            '南宁东': {
+                address: '广西壮族自治区南宁市江南区友谊路19号',
+                level: '一等站',
+                openTime: '2014年',
+                description: '南宁东站是广西壮族自治区重要的高铁枢纽站，是南广高铁、贵广高铁、南昆高铁等多条高铁线路的交汇处，对接"一带一路"东盟国家具有重要意义。'
+            },
+            '上海': {
+                address: '上海市黄浦区建国中路80号',
+                level: '特等站',
+                openTime: '1909年',
+                description: '上海站是中国铁路上海局集团有限公司管辖的特等站，是华东地区最重要的铁路枢纽之一，也是连接长三角地区的重要交通节点。'
+            },
+            '广州南': {
+                address: '广东省广州市番禺区石壁街广州南站路1号',
+                level: '特等站',
+                openTime: '2010年',
+                description: '广州南站是华南地区最大的铁路客运站，是武广高铁、广深港高铁等多条高铁线路的始发终到站，是粤港澳大湾区重要的交通枢纽。'
+            },
+            '武汉': {
+                address: '湖北省武汉市洪山区武昌站路8号',
+                level: '特等站',
+                openTime: '1957年',
+                description: '武汉站是中国铁路武汉局集团有限公司管辖的特等站，是中部地区最大的铁路枢纽之一，京广线、沪汉蓉线等多条铁路干线在此交汇。'
+            },
+            '苏州': {
+                address: '江苏省苏州市姑苏区站前广场1号',
+                level: '一等站',
+                openTime: '1908年',
+                description: '苏州站是中国铁路上海局集团有限公司管辖的一等站，是沪宁线上的重要车站，连接上海、南京等长三角重要城市。'
+            },
+            '无锡': {
+                address: '江苏省无锡市梁溪区通沙路1号',
+                level: '一等站',
+                openTime: '1906年',
+                description: '无锡站是中国铁路上海局集团有限公司管辖的一等站，是沪宁线的重要枢纽站，服务于长三角区域的客货运输。'
+            },
+            '厦门北': {
+                address: '福建省厦门市翔安区民航路1号',
+                level: '一等站',
+                openTime: '2010年',
+                description: '厦门北站是福建省重要的高铁枢纽站，是福厦高铁、厦深铁路等线路的重要站点，是海峡西岸经济区的重要交通枢纽。'
+            },
+            '北京西': {
+                address: '北京市丰台区莲花池东路118号',
+                level: '特等站',
+                openTime: '1996年',
+                description: '北京西站是中国最大的铁路客运站之一，是京广高铁、京九铁路等多条线路的始发终到站，承担着中国北方地区客运枢纽的重要功能。'
+            },
+            '潮汕': {
+                address: '广东省潮州市潮安区站前大道1号',
+                level: '一等站',
+                openTime: '2013年',
+                description: '潮汕站是粤东地区最大的高铁站，是厦深铁路的重要枢纽站，服务于潮州、汕头、揭阳三市区域的综合交通枢纽。'
+            },
+            '长沙': {
+                address: '湖南省长沙市芙蓉区站前路238号',
+                level: '特等站',
+                openTime: '1904年',
+                description: '长沙站是中国铁路广州局集团有限公司管辖的特等站，是京广线上的重要枢纽，是湖南省最重要的铁路客运站之一。'
+            },
+            '兰州西': {
+                address: '甘肃省兰州市七里河区兰工坪路809号',
+                level: '一等站',
+                openTime: '2014年',
+                description: '兰州西站是甘肃省最大的高铁站，是兰新高铁、兰渝铁路等线路的重要枢纽，是连接西北与中东部地区的重要交通节点。'
+            },
+            '重庆北': {
+                address: '重庆市渝北区龙头寺龙头寺火车站路1号',
+                level: '特等站',
+                openTime: '2011年',
+                description: '重庆北站是重庆市最大的高铁枢纽站，是渝万高铁、成渝高铁等多条高铁线路的交汇处，是西南地区重要的交通枢纽。'
+            },
+            '宁波': {
+                address: '浙江省宁波市海曙区站前路8号',
+                level: '一等站',
+                openTime: '1937年',
+                description: '宁波站是中国铁路上海局集团有限公司管辖的一等站，是沪杭甬铁路的重要枢纽站，服务于长三角南翼的重要港口城市。'
+            },
+            '山海关': {
+                address: '河北省秦皇岛市山海关区站前街1号',
+                level: '一等站',
+                openTime: '1894年',
+                description: '山海关站是京哈铁路的重要枢纽站，具有重要的历史意义，是连接华北和东北地区的重要交通节点。'
+            },
+            '石家庄': {
+                address: '河北省石家庄市桥西区中华南大街168号',
+                level: '特等站',
+                openTime: '1907年',
+                description: '石家庄站是中国铁路北京局集团有限公司管辖的特等站，是京广线、石太线等多条铁路干线的交汇处，是华北地区重要的铁路枢纽。'
+            },
+            '郑州': {
+                address: '河南省郑州市二七区站前路1号',
+                level: '特等站',
+                openTime: '1904年',
+                description: '郑州站是中国铁路郑州局集团有限公司管辖的特等站，是京广线、陇海线等多条铁路干线的交汇处，是全国重要的铁路枢纽。'
+            },
+            '金华': {
+                address: '浙江省金华市婺城区站前路1号',
+                level: '一等站',
+                openTime: '1992年',
+                description: '金华站是中国铁路上海局集团有限公司管辖的一等站，是杭长铁路、金温铁路的交汇处，是浙中地区重要的交通枢纽。'
+            },
+            '佛山西': {
+                address: '广东省佛山市禅城区季华路8号',
+                level: '一等站',
+                openTime: '2012年',
+                description: '佛山西站是广深港高铁的重要站点，是珠三角城际铁路网的重要组成部分，服务于佛山都市圈的综合交通枢纽。'
+            },
+            '深圳': {
+                address: '广东省深圳市罗湖区建设路2号',
+                level: '特等站',
+                openTime: '1911年',
+                description: '深圳站是中国铁路广州局集团有限公司管辖的特等站，是京广线的终点站，也是连接内地与香港的重要口岸车站。'
+            },
+            '常州': {
+                address: '江苏省常州市天宁区关河东路1号',
+                level: '一等站',
+                openTime: '1908年',
+                description: '常州站是中国铁路上海局集团有限公司管辖的一等站，是沪宁线的重要站点，服务于长三角区域的重要交通枢纽。'
+            },
+            '济南': {
+                address: '山东省济南市天桥区英雄山路1号',
+                level: '特等站',
+                openTime: '1904年',
+                description: '济南站是中国铁路济南局集团有限公司管辖的特等站，是京沪线、胶济线等多条铁路干线的交汇处，是山东省最大的铁路枢纽。'
+            },
+            '上饶': {
+                address: '江西省上饶市信州区站前路1号',
+                level: '一等站',
+                openTime: '1935年',
+                description: '上饶站是中国铁路上海局集团有限公司管辖的一等站，是沪昆线、皖赣线的交汇处，是赣东北地区重要的交通枢纽。'
+            },
+            '南昌西': {
+                address: '江西省南昌市红谷滩新区丰和南大道1000号',
+                level: '特等站',
+                openTime: '2013年',
+                description: '南昌西站是江西省最大的高铁枢纽站，是沪昆高铁、昌九城际等多条高铁线路的交汇处，是江西省现代化综合交通枢纽。'
+            },
+            '成都东': {
+                address: '四川省成都市成华区成都东站路1号',
+                level: '特等站',
+                openTime: '2011年',
+                description: '成都东站是四川省最大的高铁枢纽站，是成渝高铁、成灌铁路等多条线路的始发终到站，是西南地区重要的交通枢纽。'
+            },
+            '上海虹桥': {
+                address: '上海市闵行区申虹路2000号',
+                level: '特等站',
+                openTime: '2010年',
+                description: '上海虹桥站是中国最大的综合交通枢纽之一，是京沪高铁、沪宁高铁等多条高铁线路的重要站点，与虹桥机场形成空铁联运枢纽。'
+            },
+            '杭州东': {
+                address: '浙江省杭州市江干区天城东路1号',
+                level: '特等站',
+                openTime: '2013年',
+                description: '杭州东站是浙江省最大的高铁枢纽站，是沪杭高铁、杭长高铁等多条高铁线路的交汇处，是长三角南翼重要的现代化综合交通枢纽。'
+            },
+            '西安北': {
+                address: '陕西省西安市未央区太华路8号',
+                level: '特等站',
+                openTime: '2011年',
+                description: '西安北站是陕西省最大的高铁枢纽站，是西成高铁、郑西高铁等多条高铁线路的交汇处，是连接西北与中东部地区的重要门户。'
+            },
+            '汉口': {
+                address: '湖北省武汉市江岸区站前街1号',
+                level: '特等站',
+                openTime: '1903年',
+                description: '汉口站是中国铁路武汉局集团有限公司管辖的特等站，是京广线、汉丹线等多条铁路干线的交汇处，是华中地区重要的铁路枢纽。'
+            },
+            '济南西': {
+                address: '山东省济南市槐荫区经十路23366号',
+                level: '特等站',
+                openTime: '2011年',
+                description: '济南西站是山东省最大的高铁枢纽站，是京沪高铁、石济客专等多条高铁线路的交汇处，是现代化的综合交通枢纽。'
+            },
+            '徐州东': {
+                address: '江苏省徐州市云龙区和平大道88号',
+                level: '特等站',
+                openTime: '2011年',
+                description: '徐州东站是京沪高铁、郑徐高铁等多条高铁线路的交汇处，是华东地区重要的高铁枢纽，连接长三角与中原地区。'
+            },
+            '合肥南': {
+                address: '安徽省合肥市包河区站前路1号',
+                level: '特等站',
+                openTime: '2012年',
+                description: '合肥南站是安徽省最大的高铁枢纽站，是合福高铁、商合杭高铁等多条高铁线路的交汇处，是长三角区域性铁路枢纽。'
+            },
+            '温州南': {
+                address: '浙江省温州市龙湾区温州南站大道1号',
+                level: '一等站',
+                openTime: '2009年',
+                description: '温州南站是浙江省重要的高铁枢纽站，是杭温高铁、温福铁路等线路的重要站点，服务于浙南都市圈的现代化铁路枢纽。'
+            },
+            '北京南': {
+                address: '北京市丰台区永外大街车站路12号',
+                level: '特等站',
+                openTime: '2008年',
+                description: '北京南站是中国最大的高铁站之一，是京津城际、京沪高铁等多条高铁线路的始发站，是现代化的综合交通枢纽。'
+            },
+            '天津': {
+                address: '天津市河北区津站路1号',
+                level: '特等站',
+                openTime: '1888年',
+                description: '天津站是中国铁路北京局集团有限公司管辖的特等站，是京沪线、津蓟铁路等多条铁路干线的交汇处，是华北地区重要的铁路枢纽。'
+            },
+            '南京': {
+                address: '江苏省南京市玄武区龙蟠路1号',
+                level: '特等站',
+                openTime: '1908年',
+                description: '南京站是中国铁路上海局集团有限公司管辖的特等站，是沪宁线、宁安城际等多条铁路线的交汇处，是长三角重要的铁路枢纽。'
+            },
+            '兰州': {
+                address: '甘肃省兰州市城关区天水北路528号',
+                level: '特等站',
+                openTime: '1952年',
+                description: '兰州站是中国铁路兰州局集团有限公司管辖的特等站，是陇海线、兰新线等多条铁路干线的交汇处，是西北地区重要的铁路枢纽。'
+            },
+            '义乌': {
+                address: '浙江省义乌市稠城街道站前路1号',
+                level: '一等站',
+                openTime: '1992年',
+                description: '义乌站是中国铁路上海局集团有限公司管辖的一等站，是杭长铁路的重要站点，服务于世界小商品之都的重要交通枢纽。'
+            },
+            '广州东': {
+                address: '广东省广州市天河区林和西横路1号',
+                level: '特等站',
+                openTime: '1991年',
+                description: '广州东站是中国铁路广州局集团有限公司管辖的特等站，是广深线、广梅汕铁路等多条铁路线的交汇处，是华南地区重要的铁路枢纽。'
+            },
+            '郑州东': {
+                address: '河南省郑州市郑东新区站前路1号',
+                level: '特等站',
+                openTime: '2012年',
+                description: '郑州东站是河南省最大的高铁枢纽站，是郑西高铁、京广高铁、郑徐高铁等多条高铁线路的交汇处，是全国重要的高铁枢纽。'
+            },
+            '福州': {
+                address: '福建省福州市鼓楼区福飞路12号',
+                level: '特等站',
+                openTime: '1959年',
+                description: '福州站是中国铁路南昌局集团有限公司管辖的特等站，是向莆铁路、福厦铁路等多条铁路线的交汇处，是福建省重要的铁路枢纽。'
+            },
+            '长沙南': {
+                address: '湖南省长沙市雨花区站前路8号',
+                level: '特等站',
+                openTime: '2009年',
+                description: '长沙南站是湖南省最大的高铁枢纽站，是京广高铁、沪昆高铁等多条高铁线路的交汇处，是中南地区现代化的综合交通枢纽。'
+            },
+            '沈阳北': {
+                address: '辽宁省沈阳市沈北新区虎石台镇站前路1号',
+                level: '特等站',
+                openTime: '2011年',
+                description: '沈阳北站是东北地区最大的高铁枢纽站，是哈大高铁、沈丹高铁等多条高铁线路的交汇处，是现代化的综合交通枢纽。'
+            }
+        };
+
+        $.get('static/data/RelationChartInfo.json', function (data) {
+            nodes = data.nodes.map(function (node) {
+                return {
+                    name: node.name,
+                    value: node.value,
+                    category: node.category,
+                    symbolSize: node.value * 10
+                };
+            });
+            nodes = nodes.sort(function (a, b) {
+                return b.value - a.value;
+            });
+            edges = data.edges.map(function (edge) {
+                return {
+                    source: edge.source,
+                    target: edge.target
+                };
+            });
+
+            myChart.on('mouseover', function(params) {
+                if (params.dataType === 'node') {
+                    const stationPanel = document.getElementById('station-panel');
+                    const stationName = document.getElementById('station-name');
+                    const stationInfoDiv = document.getElementById('station-info');
+                    const info = stationData[params.name];
+                    
+                    if (info) {
+                        // 更新面板内容
+                        stationName.textContent = params.name + '站';
+                        stationInfoDiv.innerHTML = `
+                            <p><strong>地址：</strong> ${info.address}</p>
+                            <p><strong>车站等级：</strong> ${info.level}</p>
+                            <p><strong>开通时间：</strong> ${info.openTime}</p>
+                            <p><strong>简介：</strong> ${info.description}</p>
+                        `;
+
+                        // 获取节点在画布中的位置
+                        const chartWidth = myChart.getWidth();
+                        const pointInPixel = myChart.convertToPixel({seriesIndex: 0}, [params.event.offsetX, params.event.offsetY]);
+                        
+                        if (params.event.offsetX > chartWidth / 2) {
+                            // 节点在右侧，面板显示在右上角
+                            stationPanel.style.right = '20px';
+                            stationPanel.style.left = 'auto';
+                        } else {
+                            // 节点在左侧，面板显示在左上角
+                            stationPanel.style.left = '20px';
+                            stationPanel.style.right = 'auto';
+                        }
+                        
+                        stationPanel.style.display = 'block';
+                    }
+                }
+            });
+
+            myChart.on('mouseout', function(params) {
+                if (params.dataType === 'node') {
+                    document.getElementById('station-panel').style.display = 'none';
+                }
+            });
+
+            option = {
+                legend: [
+                    { data: ["东部", "中部", "西部", "东北"], selectedMode: false }
+                ],
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(params) {
+                        if (params.dataType === 'node') {
+                            return `
+                                <div style="padding: 10px">
+                                    <h4>${params.name}站</h4>
+                                    <p>地区: ${params.data.category}</p>
+                                    <p>连接数: ${params.data.value}</p>
+                                </div>
+                            `;
+                        }
+                        return '';
+                    }
+                },
+                animationDurationUpdate: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                series: [{
+                    type: 'graph',
+                    layout: 'force',
+                    force: {
+                        initLayout: "circular",
+                        repulsion: 28000,
+                        gravity: 0.2,
+                        layoutAnimation: false,
+                    },
+                    label: {
+                        position: 'right',
+                        formatter: '{b}'
+                    },
+                    draggable: true,
+                    categories: data.categories,
+                    data: nodes,
+                    edges: edges,
+                    emphasis: {
+                        focus: 'adjacency',
+                        label: {
+                            position: 'right',
+                            show: true
+                        }
+                    },
+                    roam: true,
+                    lineStyle: {
+                        width: 0.5,
+                        opacity: 0.7
+                    }
+                }]
+            };
+
+            myChart.setOption(option);
+        });
+    </script>
+</body>
+
+</html>

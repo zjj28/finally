@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高铁站点WebGIS系统</title>
+    <!-- 自定义CSS -->
+    <link rel="stylesheet" href="css/map.css" />
+    <link rel="stylesheet" href="css/panels.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        console.log('页面开始加载...');
+        
+        window._AMapSecurityConfig = {
+            securityJsCode: '', // 如果启用了安全密钥，请在此处填写
+        }
+        
+        // 直接在HTML中定义initMap函数，确保它能被高德地图API回调
+        function initMap() {
+            console.log('HTML中的initMap函数被调用');
+            // 加载真正的地图初始化脚本
+            var script = document.createElement('script');
+            script.src = 'js/map-init.js';
+            script.onload = function() {
+                console.log('map-init.js加载完成，调用真正的初始化函数');
+                if (typeof window.initRealMap === 'function') {
+                    window.initRealMap();
+                } else {
+                    console.error('initRealMap函数未找到，map-init.js可能有问题');
+                }
+            };
+            document.head.appendChild(script);
+        }
+        
+        function initMapAfterLoad() {
+            console.log('高德地图API加载完成，准备初始化地图...');
+            initMap();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>全国高铁站点信息系统</h1>
+        </header>
+        
+        <div id="loading-container">
+            <div id="loading-bar">
+                <div id="loading-progress"></div>
+            </div>
+            <div id="loading-text">加载中...</div>
+        </div>
+        
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <div id="error-container" class="hidden">
+            <div class="error-message">
+                <h3>数据加载失败</h3>
+                <p>无法加载地图数据，请检查网络连接后重试。</p>
+                <button id="retry-button">重新加载</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载高德地图API，使用异步加载方式 -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=05dc71e1e19e9cc2aec29bf9ef003cda&callback=initMapAfterLoad"></script>
+
+    <!-- ECharts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js" defer></script>
+    
+    <!-- 其他应用脚本 -->
+    <script src="utils/chartFormatters.js" defer></script>
+    <script src="hooks/useWebSocket.js" defer></script>
+    <script src="js/panels.js" defer></script>
+    <script src="js/map-events.js" defer></script>
+    <script src="components/DashboardPanel.js" defer></script>
+    <script src="components/StatisticsPanel.js" defer></script>
+    <script src="js/app.js" defer></script>
+</body>
+</html> 

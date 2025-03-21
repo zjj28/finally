@@ -1,0 +1,617 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "BJS",
+        "name": "北京南站",
+        "line": "京沪高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.378, 39.865]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "TJS",
+        "name": "天津站",
+        "line": "京沪高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.210, 39.135]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "JNW",
+        "name": "济南西站",
+        "line": "京沪高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.998, 36.652]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "XZD",
+        "name": "徐州东站",
+        "line": "京沪高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.488, 34.263]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NJN",
+        "name": "南京南站",
+        "line": "京沪高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.798, 31.973]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SHH",
+        "name": "上海虹桥站",
+        "line": "京沪高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.323, 31.194]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZD",
+        "name": "杭州东站",
+        "line": "沪杭高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.210, 30.283]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NBS",
+        "name": "宁波站",
+        "line": "沪杭甬高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.628, 29.866]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "WHS",
+        "name": "武汉站",
+        "line": "京广高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.431, 30.609]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "CSN",
+        "name": "长沙南站",
+        "line": "京广高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.055, 28.185]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "GZN",
+        "name": "广州南站",
+        "line": "京广高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.269, 22.991]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SZN",
+        "name": "深圳北站",
+        "line": "广深港高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.029, 22.609]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "XAN",
+        "name": "西安北站",
+        "line": "郑西高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.940, 34.377]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ZZD",
+        "name": "郑州东站",
+        "line": "郑西高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.742, 34.753]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "CDN",
+        "name": "成都东站",
+        "line": "成渝高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [104.108, 30.619]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "CQN",
+        "name": "重庆北站",
+        "line": "成渝高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.532, 29.615]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HFH",
+        "name": "合肥南站",
+        "line": "合福高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.278, 31.831]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "FZS",
+        "name": "福州站",
+        "line": "合福高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.306, 26.082]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "XMN",
+        "name": "厦门北站",
+        "line": "福厦高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.078, 24.641]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NCS",
+        "name": "南昌站",
+        "line": "沪昆高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.933, 28.683]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KMD",
+        "name": "昆明南站",
+        "line": "沪昆高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [102.832, 24.994]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "GYD",
+        "name": "贵阳北站",
+        "line": "沪昆高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.639, 26.647]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HRB",
+        "name": "哈尔滨西站",
+        "line": "哈大高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [126.642, 45.773]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "CC",
+        "name": "长春站",
+        "line": "哈大高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [125.324, 43.896]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SYN",
+        "name": "沈阳北站",
+        "line": "哈大高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [123.400, 41.805]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DLN",
+        "name": "大连北站",
+        "line": "哈大高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.624, 38.913]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "TYN",
+        "name": "太原南站",
+        "line": "石太高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.558, 37.819]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SJZD",
+        "name": "石家庄站",
+        "line": "石太高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.484, 38.042]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "LZW",
+        "name": "兰州西站",
+        "line": "兰新高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [103.752, 36.068]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "WLM",
+        "name": "乌鲁木齐站",
+        "line": "兰新高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [87.539, 43.771]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NNE",
+        "name": "南宁东站",
+        "line": "南广高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [108.407, 22.865]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HKW",
+        "name": "海口东站",
+        "line": "海南环岛高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.376, 19.989]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SYA",
+        "name": "三亚站",
+        "line": "海南环岛高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.511, 18.252]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "YCE",
+        "name": "银川站",
+        "line": "银西高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.232, 38.487]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "BTS",
+        "name": "包头站",
+        "line": "呼包高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.840, 40.658]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HHT",
+        "name": "呼和浩特东站",
+        "line": "呼包高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [111.751, 40.818]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "WXN",
+        "name": "无锡东站",
+        "line": "沪宁高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.355, 31.585]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SZH",
+        "name": "苏州北站",
+        "line": "沪宁高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.638, 31.401]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZS",
+        "name": "杭州南站",
+        "line": "杭甬高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.217, 30.183]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "WZD",
+        "name": "温州南站",
+        "line": "甬台温高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.658, 28.015]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "JJG",
+        "name": "九江站",
+        "line": "沪昆高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.001, 29.705]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "WHN",
+        "name": "武汉站",
+        "line": "沪汉蓉高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.431, 30.609]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "YCH",
+        "name": "宜昌东站",
+        "line": "沪汉蓉高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [111.361, 30.691]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "CDE",
+        "name": "成都东站",
+        "line": "沪汉蓉高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [104.108, 30.619]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ZZE",
+        "name": "郑州东站",
+        "line": "郑徐高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.742, 34.753]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "KFS",
+        "name": "开封北站",
+        "line": "郑徐高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.352, 34.855]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "XZE",
+        "name": "徐州东站",
+        "line": "郑徐高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.488, 34.263]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NJN",
+        "name": "南京南站",
+        "line": "宁杭高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [118.798, 31.973]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "HZE",
+        "name": "杭州东站",
+        "line": "宁杭高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.210, 30.283]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "QHD",
+        "name": "秦皇岛站",
+        "line": "京哈高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.604, 39.943]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SHE",
+        "name": "沈阳站",
+        "line": "京哈高铁"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [123.396, 41.791]
+      }
+    }
+  ]
+} 

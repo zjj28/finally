@@ -1,0 +1,51 @@
+{
+  "daily": [
+    {"date": "2023-03-01", "count": 152000},
+    {"date": "2023-03-02", "count": 148500},
+    {"date": "2023-03-03", "count": 165000},
+    {"date": "2023-03-04", "count": 187000},
+    {"date": "2023-03-05", "count": 192000},
+    {"date": "2023-03-06", "count": 145000},
+    {"date": "2023-03-07", "count": 143000}
+  ],
+  "hourly": [
+    {"hour": "00:00", "count": 2500},
+    {"hour": "01:00", "count": 1200},
+    {"hour": "02:00", "count": 800},
+    {"hour": "03:00", "count": 500},
+    {"hour": "04:00", "count": 1000},
+    {"hour": "05:00", "count": 3500},
+    {"hour": "06:00", "count": 8500},
+    {"hour": "07:00", "count": 15000},
+    {"hour": "08:00", "count": 18500},
+    {"hour": "09:00", "count": 14000},
+    {"hour": "10:00", "count": 12000},
+    {"hour": "11:00", "count": 11500},
+    {"hour": "12:00", "count": 13000},
+    {"hour": "13:00", "count": 14500},
+    {"hour": "14:00", "count": 13000},
+    {"hour": "15:00", "count": 12500},
+    {"hour": "16:00", "count": 14000},
+    {"hour": "17:00", "count": 17500},
+    {"hour": "18:00", "count": 19000},
+    {"hour": "19:00", "count": 16500},
+    {"hour": "20:00", "count": 12000},
+    {"hour": "21:00", "count": 9500},
+    {"hour": "22:00", "count": 6000},
+    {"hour": "23:00", "count": 4000}
+  ],
+  "byLine": [
+    {"lineId": "jinghu", "count": 58000, "capacity": 65000},
+    {"lineId": "jingguang", "count": 62000, "capacity": 68000},
+    {"lineId": "huning", "count": 42000, "capacity": 50000},
+    {"lineId": "huhang", "count": 38000, "capacity": 45000}
+  ],
+  "byStation": [
+    {"stationId": "BJS", "name": "北京南站", "count": 85000},
+    {"stationId": "TJS", "name": "天津站", "count": 62000},
+    {"stationId": "JNW", "name": "济南西站", "count": 48000},
+    {"stationId": "XZD", "name": "徐州东站", "count": 35000},
+    {"stationId": "NJS", "name": "南京南站", "count": 72000},
+    {"stationId": "SHH", "name": "上海虹桥站", "count": 92000}
+  ]
+} 

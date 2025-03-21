@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户登录 - 高铁智慧科普体验空间</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/templatemo-style.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="shortcut icon" href="/img/ico/favicon.ico">
+    
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            height: 45px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .btn-login {
+            background: #3498db;
+            color: white;
+            height: 45px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background: #2980b9;
+            color: white;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .pic-bg-full {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: brightness(0.8);
+        }
+
+        .visit-stats {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .visit-stats p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 背景图 -->
+    <div class="pic-bg-full" style="background-image: url(static/image/home/home3.jpg);"></div>
+
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="static/image/CEMU.png" alt="logo">
+                <h3>用户登录</h3>
+            </div>
+
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" placeholder="用户名/手机号" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" placeholder="密码" required>
+                </div>
+                <button type="submit" class="btn btn-login">登 录</button>
+            </form>
+
+            <div class="login-footer">
+                <span>还没有账号？</span>
+                <a href="register.html">立即注册</a>
+                <br>
+                <a href="index.html">返回首页</a>
+            </div>
+
+            <!-- 添加访问统计显示 -->
+            <div class="visit-stats">
+                <p>今日访问量: <span id="visitCount">-</span></p>
+                <p>独立访客数: <span id="uniqueVisitors">-</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // 这里添加登录验证逻辑
+            if(username && password) {
+                // 简单演示 - 实际应用中需要与后端交互
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', username);
+                window.location.href = 'index.html';
+            }
+
+            return false;
+        }
+
+        // 记录访问
+        async function recordVisit() {
+            try {
+                const response = await fetch('http://localhost:3000/api/record-visit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ip: '', // 服务器端会获取真实IP
+                        userAgent: navigator.userAgent,
+                        pageUrl: window.location.href
+                    })
+                });
+                if (!response.ok) throw new Error('Failed to record visit');
+            } catch (error) {
+                console.error('Error recording visit:', error);
+            }
+        }
+
+        // 获取并显示访问统计
+        async function updateVisitStats() {
+            try {
+                const response = await fetch('http://localhost:3000/api/visit-stats');
+                const stats = await response.json();
+                
+                document.getElementById('visitCount').textContent = stats.visit_count;
+                document.getElementById('uniqueVisitors').textContent = stats.unique_visitors;
+            } catch (error) {
+                console.error('Error fetching visit stats:', error);
+            }
+        }
+
+        // 页面加载时执行
+        document.addEventListener('DOMContentLoaded', () => {
+            recordVisit();
+            updateVisitStats();
+            // 每分钟更新一次统计数据
+            setInterval(updateVisitStats, 60000);
+        });
+    </script>
+</body>
+
+</html> 

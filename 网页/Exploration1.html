@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/templatemo-style.css"> 
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        .page {
+            min-height: 100vh;
+            transition: transform 0s ease-out;
+        }
+        
+        .page.slide-up {
+            transform: translateY(-100%);
+        }
+
+        #page2 {
+            position: fixed;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            transition: transform 1s ease-out;
+        }
+
+        .pic-bg-H {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .pic-bg-H:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .image-caption {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .image-caption.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            color: #1f4e79;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle1 {
+            font-size: 30px;
+            color: #1f4e79;
+            margin-bottom: 40px;
+        }
+
+		/* 正文 */
+		p {
+			font-size: 24px;
+			line-height: 1.6;
+			margin-bottom: 20px;
+			text-indent: 2em;
+			/* 首行缩进 2 个字符 */
+
+		}
+
+    </style>
+</head>
+<body>		
+
+
+
+<style>
+@media (prefers-color-scheme: dark) { body { background: white;  }}
+</style>
+<meta name="format-detection" content="telephone=no">
+
+<script>    
+    window.onload = function() {
+    document.onkeydown = function() {
+    var e = window.event || arguments[0];
+    if(e.keyCode == 123) {return false;} else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {return false;} else if((e.shiftKey) && (e.keyCode == 121)){return false;}};document.oncontextmenu = function() {return false;}}
+</script>
+
+<script>
+
+window.addEventListener('scroll', function(){
+	const toTop = window.scrollY;
+
+	if(document.body.clientWidth>=768){
+	if(toTop==20||toTop<20)
+	{		
+		document.getElementById('fix-m-b').style.top="20px";
+		document.getElementById('fix-m').style.width="";
+		document.getElementById('fix-m').style.borderRadius="";
+	}				 
+	else
+	{
+		document.getElementById('fix-m-b').style.top="0px";
+		document.getElementById('fix-m').style.width="100%";
+		document.getElementById('fix-m').style.borderRadius="0";	
+	}
+	}
+</script>
+	
+	
+	
+
+	
+<div class="page" id="page1">
+	<div class="">
+		<div class="seperation"></div>
+		<div class="seperation"></div>
+		<div class="container">
+			<div class="section-title p-a-05">
+				<div style="width: 100%;">
+					<h1 style="white-space: nowrap; font-weight: bold;">思想启蒙·技术积累（1978年-2003年）</h1>
+				</div>
+				<div class="subtitle1">破晓前的探索：从新干线到中国速度的萌芽</div>
+				<p>在 1978 年至 2003 年这段中国高铁发展的思想启蒙与技术积累阶段，时代的浪潮悄然涌动。彼时，中国积极投身国际交流，广纳全球高铁领域的前沿理念，在技术探索的荆棘中艰难前行，于初步实践里反复打磨。这期间，无数科研人员怀揣热忱，用智慧与汗水搭建起通往高铁新时代的桥梁。这些努力虽未立即掀起惊涛骇浪，却默默沉淀，为后续高铁技术的引进与自主创新夯实根基，成为中国高铁蓬勃发展不可或缺的序曲 。</p>
+			</div>
+			
+			<div style="position: relative;">
+				<div class="pic-bg-H border-radius-s" style="background-image: url(static/image/history/19781.jpg); height: 500px;"></div>
+				<div style="text-align: center; margin-top: 10px; font-size: 14px; color: #666;" class="image-caption">
+					邓小平乘坐新干线
+				</div>
+			</div>
+			<div class="seperation"></div>
+			<div class="seperation"></div>
+			<!-- 时间轴容器 -->
+			<div class="row m-0">
+				<div class="col-md-6">
+					<div class="timeline-container" style="padding: 40px 0px 40px 40px; position: relative; height: 800px;">
+						<!-- 时间轴主线 -->
+						<div class="timeline-line" style="position: absolute; width: 4px; height: 100%; background-color: #e0e0e0; left:50px; top: 0;">
+							<!-- 时间点和内容 -->
+							<div class="timeline-point" style="position: absolute; left: -8px; top: 10%;">
+								<div class="point" style="width: 20px; height: 20px; background-color: #1f4e79; border-radius: 50%;"></div>
+								<div class="content" style="position: absolute; left: 40px; top: -30px; width: 400px;">
+									<div class="year" style="font-weight: bold;font-size: 20px; color: #1f4e79;">1978年</div>
+									<div class="text" style="font-size: 20px; color: #333; margin-top: 5px;">邓小平访问日本并乘坐新干线，首次将高铁概念引入中国</div>
+								</div>
+							</div>
+
+							<div class="timeline-point" style="position: absolute; left: -8px; top: 30%;">
+								<div class="point" style="width: 20px; height: 20px; background-color: #1f4e79; border-radius: 50%;"></div>
+								<div class="content" style="position: absolute; left: 40px; top: -30px; width: 400px;">
+									<div class="year" style="font-weight: bold;;font-size: 20px; color:#1f4e79;">1980年代</div>
+									<div class="text" style="font-size: 20px; color: #333; margin-top: 5px;">广深铁路启动电气化改造，成为中国准高速铁路的试验线路</div>
+								</div>
+							</div>
+
+							<div class="timeline-point" style="position: absolute; left: -8px; top: 50%;">
+								<div class="point" style="width: 20px; height: 20px; background-color: #1f4e79; border-radius: 50%;"></div>
+								<div class="content" style="position: absolute; left: 40px; top: -30px; width: 400px;">
+									<div class="year" style="font-weight: bold; font-size: 20px;color: #1f4e79;">1990年代初期</div>
+									<div class="text" style="font-size: 20px; color: #333; margin-top: 5px;">中国启动高铁技术攻关，提出"客货分线"和"高中混跑"理念</div>
+								</div>
+							</div>
+
+							<div class="timeline-point" style="position: absolute; left: -8px; top: 70%;">
+								<div class="point" style="width: 20px; height: 20px; background-color: #1f4e79; border-radius: 50%;"></div>
+								<div class="content" style="position: absolute; left: 40px; top: -30px; width: 400px;">
+									<div class="year" style="font-weight: bold;font-size: 20px; color: #1f4e79;">1991年</div>
+									<div class="text" style="font-size: 20px; color: #333; margin-top: 5px;">完成《京沪高速铁路线路方案构想报告》，首次正式提出高铁建设计划</div>
+								</div>
+							</div>
+
+							<div class="timeline-point" style="position: absolute; left: -8px; top: 90%;">
+								<div class="point" style="width: 20px; height: 20px; background-color:#1f4e79; border-radius: 50%;"></div>
+								<div class="content" style="position: absolute; left: 40px; top: -30px; width: 400px;">
+									<div class="year" style="font-weight: bold; font-size: 20px;color: #1f4e79;">1996-1998年</div>
+									<div class="text" style="font-size: 20px; color: #333; margin-top: 5px;">中韩合作研制高速列车，广深铁路实现200公里/小时运营</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-6">
+					<div style="padding: 40px 40px 0px 0px;">
+						<div style="margin-bottom: 40px;">
+							<img src="static/image/history/guangshen.png" alt="广深电气化铁路施工现场" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
+							<div style="text-align: center; margin-top: 5px; font-size: 16px; color: #333;">
+								广深电气化铁路施工现场
+							</div>
+						</div>
+						<div>
+							<img src="static/image/history/shaoshan.jpg" alt="韶山8型电力机车" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;">
+							<div style="text-align: center; margin-top: 10px; font-size: 16px; color: #333;">
+								中国第一种预备型高速铁路机车——韶山8型电力机车
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="seperation"></div>
+
+			<!-- 社会与经济影响部分 -->
+			<div  style="width: 100%;">
+				<h2 style="font-size: 35px; color: #1f4e79;">社会与经济影响</h2>
+				<h2 class="font-weight-bold" style="font-size: 35px">奠基之路·星火初燃</h2>
+				<div style="margin-top: 30px;">
+					<h3 style="color: #6b91c1; font-size: 24px; margin-bottom: 15px; font-weight: normal;">思想启蒙：</h3>
+					<p style="font-size: 21px; margin-bottom: 15px;">
+						邓小平乘坐日本新干线的经历，不仅让中国领导人深刻认识到高铁技术的巨大潜力，也在全社会掀起了对高速铁路的关注与讨论，为中国铁路现代化奠定了思想基础。
+					</p>
+				</div>
+
+				<div style="margin-top: 30px;">
+					<h3 style="color: #6b91c1; font-size: 24px; margin-bottom: 15px; font-weight: normal;">技术积累：</h3>
+					<p style="font-size: 21px; margin-bottom: 15px;">
+						广深铁路的电气化改造和中韩合作研制高速列车的实践，为中国积累了宝贵的准高速铁路运营经验，培养了一批技术人才，为后续高铁技术的引进与创新提供了重要支撑。
+					</p>
+				</div>
+
+				<div style="margin-top: 30px;">
+					<h3 style="color:#6b91c1 ; font-size: 24px; margin-bottom: 15px; font-weight: normal;">经济拉动效应：</h3>
+					<p style="font-size: 21px; margin-bottom: 15px;">
+						准高速铁路的运营显著提升了区域经济活力，缩短了城市间的时空距离，促进了人员与物资的快速流动，为后续高铁网络的建设提供了重要参考，同时也为中国高铁技术的全面崛起奠定了坚实基础。这一时期的技术探索与实践，不仅推动了中国铁路的现代化进程，也为中国经济的高质量发展注入了新动能。
+					</p>
+				</div>
+			</div>
+
+			<div class="seperation"></div>
+		</div>
+	</div>
+</div>
+   
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const captions = document.querySelectorAll('.image-caption');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    });
+    
+    captions.forEach(caption => {
+        observer.observe(caption);
+    });
+});
+</script>

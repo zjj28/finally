@@ -1,0 +1,263 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jinghu",
+        "name": "京沪高铁",
+        "length": 1318
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.378, 39.865],
+          [117.210, 39.135],
+          [116.998, 36.652],
+          [117.488, 34.263],
+          [118.798, 31.973],
+          [121.323, 31.194]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jingguang",
+        "name": "京广高铁",
+        "length": 2298
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.378, 39.865],
+          [114.484, 38.042],
+          [113.742, 34.753],
+          [114.431, 30.609],
+          [113.055, 28.185],
+          [113.269, 22.991]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hada",
+        "name": "哈大高铁",
+        "length": 921
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [126.642, 45.773],
+          [125.324, 43.896],
+          [123.400, 41.805],
+          [121.624, 38.913]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "huning",
+        "name": "沪宁高铁",
+        "length": 301
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.323, 31.194],
+          [120.638, 31.401],
+          [120.355, 31.585],
+          [118.798, 31.973]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "huhang",
+        "name": "沪杭高铁",
+        "length": 202
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.323, 31.194],
+          [120.210, 30.283]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "zhengxi",
+        "name": "郑西高铁",
+        "length": 505
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [113.742, 34.753],
+          [111.652, 34.518],
+          [110.089, 34.369],
+          [108.940, 34.377]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "chengyu",
+        "name": "成渝高铁",
+        "length": 308
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [104.108, 30.619],
+          [105.441, 30.121],
+          [106.532, 29.615]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "guangshen",
+        "name": "广深港高铁",
+        "length": 142
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [113.269, 22.991],
+          [114.029, 22.609],
+          [114.172, 22.318]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lanxin",
+        "name": "兰新高铁",
+        "length": 1776
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [103.752, 36.068],
+          [98.494, 39.733],
+          [94.661, 40.158],
+          [87.539, 43.771]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ningbo",
+        "name": "宁杭甬高铁",
+        "length": 251
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [118.798, 31.973],
+          [120.210, 30.283],
+          [121.628, 29.866]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hainan",
+        "name": "海南环岛高铁",
+        "length": 308
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [110.376, 19.989],
+          [110.258, 19.512],
+          [109.511, 18.252]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hefufu",
+        "name": "合福高铁",
+        "length": 813
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [117.278, 31.831],
+          [118.326, 29.288],
+          [119.306, 26.082]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hukun",
+        "name": "沪昆高铁",
+        "length": 2266
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.323, 31.194],
+          [120.210, 30.283],
+          [116.001, 29.705],
+          [115.933, 28.683],
+          [113.055, 28.185],
+          [106.639, 26.647],
+          [102.832, 24.994]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jingha",
+        "name": "京哈高铁",
+        "length": 1700
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.378, 39.865],
+          [119.604, 39.943],
+          [121.624, 38.913],
+          [123.396, 41.791],
+          [126.642, 45.773]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "huhanrong",
+        "name": "沪汉蓉高铁",
+        "length": 1580
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [121.323, 31.194],
+          [118.798, 31.973],
+          [117.278, 31.831],
+          [114.431, 30.609],
+          [111.361, 30.691],
+          [104.108, 30.619]
+        ]
+      }
+    }
+  ]
+} 

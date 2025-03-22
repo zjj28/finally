@@ -13,6 +13,47 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .main-content {
+            padding: 50px 0;
+        }
+
+        .welcome-text {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #007bff, #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-text {
+            font-size: 1.2rem;
+            color: #8c8c8c;
+            margin-bottom: 50px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="height: 8%; font-size: 20px; text-align:center">
@@ -37,10 +78,53 @@
 </nav>
 
 
-<body style="height: 100%; margin: 0; font-size: 300px; text-align: center;color:white; background-color:rgb(9,18,32);">
-
-    欢迎来到列车信息可视化空间
-
+<body style="height: 100%; margin: 0; background-color:rgb(9,18,32);">
+    <div class="container main-content">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1 class="welcome-text">欢迎来到列车信息可视化空间</h1>
+                <p class="sub-text">探索铁路网络数据，发现智能出行方案</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card text-center" onclick="window.location.href='/StationVis'">
+                    <i class="fas fa-map-marker-alt feature-icon"></i>
+                    <h3 style="color: white">站点信息</h3>
+                    <p style="color: #8c8c8c">查看全国铁路站点分布及详细信息</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center" onclick="window.location.href='/TrainVis'">
+                    <i class="fas fa-train feature-icon"></i>
+                    <h3 style="color: white">列车信息</h3>
+                    <p style="color: #8c8c8c">实时掌握列车运行状态与时刻表</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center" onclick="window.location.href='/AccessVis'">
+                    <i class="fas fa-project-diagram feature-icon"></i>
+                    <h3 style="color: white">站点可达性</h3>
+                    <p style="color: #8c8c8c">分析站点间的连通性与可达性</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card text-center" onclick="window.location.href='/ChartVis'">
+                    <i class="fas fa-chart-network feature-icon"></i>
+                    <h3 style="color: white">站点连接关系</h3>
+                    <p style="color: #8c8c8c">可视化展示站点间的网络拓扑结构</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card text-center" onclick="window.location.href='/PathVis'">
+                    <i class="fas fa-route feature-icon"></i>
+                    <h3 style="color: white">路径规划</h3>
+                    <p style="color: #8c8c8c">智能推荐最优出行路线</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

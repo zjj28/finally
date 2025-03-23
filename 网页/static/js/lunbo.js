@@ -26,12 +26,12 @@ class Slide {
         link: 'https://news.cctv.com/2025/02/22/ARTIRwayUHEDOk8Sw02j6wgr250222.shtml'
       },
       {
-        imageName: '03.jpg',
+        imageName: '04.jpg',
         title: '1月全国铁路发送旅客3.69亿人次',
         link: 'https://example.com/news3'
       },
       {
-        imageName: '04.jpg',
+        imageName: '03.jpg',
         title: '铁路“守桥人”的青春足迹',
         link: 'https://example.com/news4'
       },

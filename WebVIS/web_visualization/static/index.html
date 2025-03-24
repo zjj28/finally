@@ -22,7 +22,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.1);
@@ -32,10 +32,13 @@
             font-size: 40px;
             margin-bottom: 15px;
             color: #007bff;
+            /* 图标颜色 */
         }
 
         .main-content {
             padding: 50px 0;
+            margin-top: 70px;
+            /* 调整此值以控制距离 */
         }
 
         .welcome-text {
@@ -50,35 +53,233 @@
         .sub-text {
             font-size: 1.2rem;
             color: #8c8c8c;
-            margin-bottom: 50px;
+            margin-bottom: 10px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 固定头部，设定位置和样式 */
+        .header-m {
+            position: fixed;
+            top: 15px;
+            bottom: auto;
+            z-index: 999;
+            text-align: justify-all;
+            height: 70px;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        /* 头部内容盒子的样式 */
+        .header-m-box {
+            width: 500px;
+            background: rgb(255, 255, 255);
+            align-self: center;
+            border-radius: 10px;
+            pointer-events: auto;
+            box-shadow: 0 0 15px 0px rgba(15, 45, 105, 0.2);
+            /* 添加阴影效果 */
+            border: 1px solid #e0e0e0;
+            /* 添加边框 */
+        }
+
+        /* logo 容器的样式 */
+        .header-logo-m-box {
+            width: 100px;
+            height: 40px;
+            display: inline-block;
+            position: relative;
+            background: white;
+        }
+
+        /* logo 的样式，设置背景图片 */
+        .header-logo-m {
+            width: 100px;
+            height: 100px;
+            background: #FFF url(../image/CEMU.png);
+            background-position: center;
+            background-size: contain;
+            left: 10px;
+            right: 10px;
+            top: -18px;
+            border: 3px solid white;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        /* 头部链接的样式 */
+        .header-link-m {
+            line-height: 26px;
+            font-size: 18px;
+            /* 调整字体大小 */
+            color: #333333;
+            font-weight: 500;
+            /* 调整字体粗细 */
+            display: inline-block;
+            height: 84px;
+            width: 96px;
+            text-decoration: none;
+            /* 去掉下划线 */
+            transition: color 0.3s ease;
+            /* 添加颜色过渡效果 */
+        }
+
+        .header-link-m:hover {
+            color: #132968;
+            /* 鼠标悬停时的颜色 */
+            font-weight: 700;
+            /* 鼠标悬停时加粗 */
+        }
+
+        /* 头部图标的样式 */
+        .header-icon-m {
+            width: 40px;
+            height: 40px;
+            margin-top: 10px;
+        }
+
+        /* 阴影效果 */
+        .shadow {
+            box-shadow: 0 0 15px 0px rgba(15, 45, 105, 0.2);
+        }
+
+        /* 响应式设计 */
+        @media screen and (max-width: 1920px) {
+
+            /* 导航栏宽度 */
+            .header-m-box {
+                width: 500px;
+            }
+
+            /* 导航栏文字 */
+            .header-link-m {
+                line-height: 16px;
+                font-size: 16px;
+                color: #00274d;
+                font-weight: bold;
+                display: inline-block;
+                height: 40px;
+                width: 85px;
+            }
+
+            .header-icon-m {
+                width: 30px;
+                height: 30px;
+            }
+
+            .header-logo-m-box {
+                width: 100px;
+                height: 40px;
+                display: inline-block;
+                position: relative;
+                background: white;
+            }
+
+            .header-logo-m {
+                width: 80px;
+                height: 80px;
+                background: #ffffff url(/WebVIS/web_visualization/static/image/NewLogo.png);
+                position: absolute;
+                background-position: center;
+                background-size: contain;
+                left: 10px;
+                right: 10px;
+                top: -0px;
+                border: 5px solid rgb(255, 255, 255);
+                border-radius: 35px;
+                z-index: 2;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header-m {
+                position: fixed;
+                top: auto !important;
+                bottom: 0 !important;
+                width: 100%;
+                max-width: 768px;
+                background: white;
+                z-index: 999;
+                text-align: justify-all;
+                height: auto;
+            }
+
+            .header-m-box {
+                width: 100%;
+                background: white;
+                align-self: center;
+                border-radius: 0px;
+                pointer-events: auto;
+                box-shadow: 0 0 15px 0px rgba(15, 45, 105, 0.2);
+                /* 添加阴影效果 */
+                border: 1px solid #e0e0e0;
+                /* 添加边框 */
+            }
+
+            .header-logo-m {
+                top: -15px;
+            }
+
+            .header-link-m {
+                width: calc(23% - 20px);
+                font-size: 14px;
+                /* 调整小屏幕下的字体大小 */
+            }
+        }
+    </style>
 </head>
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="height: 8%; font-size: 20px; text-align:center">
-    <a class="navbar-brand mr-auto" href="/" style="font-size: 25px">列车信息</a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/StationVis">站点信息</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/TrainVis">列车信息</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/AccessVis">站点可达性</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ChartVis">站点连接关系</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/PathVis">路径规划</a>
-        </li>
-    </ul>
-</nav>
 
 
 <body style="height: 100%; margin: 0; background-color:rgb(9,18,32);">
+    <!-- 导航栏 -->
+    <div class="header-m" align="center" id="fix-m-b">
+        <div class="header-m-box shadow" id="fix-m">
+            <div class="header-logo-m-box"><a class="header-logo-m shadow" href="home.html" id="logo"></a></div>
+
+            <a class="header-link-m " href="CR.html">
+                动车风采
+            </a>
+            <a class="header-link-m " href="../WebVIS/web_visualization/static/index.html">
+                线路探秘
+            </a>
+
+            <a class="header-link-m" href="index1.html">
+                孪生视界
+            </a>
+            <a class="header-link-m " href="Topic.html">
+                人物百科
+            </a>
+        </div>
+    </div>
+    <!-- 导航栏的大小控制 -->
+    <script>
+
+        window.addEventListener('scroll', function () {
+            const toTop = window.scrollY;
+
+            if (document.body.clientWidth >= 768) {
+                if (toTop == 20 || toTop < 20) {
+                    document.getElementById('fix-m-b').style.top = "20px";
+                    document.getElementById('fix-m').style.width = "";
+                    document.getElementById('fix-m').style.borderRadius = "";
+                }
+                else {
+                    document.getElementById('fix-m-b').style.top = "0px";
+                    document.getElementById('fix-m').style.width = "100%";
+                    document.getElementById('fix-m').style.borderRadius = "0";
+                }
+            }
+            else { }
+
+            if (toTop > 300) { document.getElementById('totop').style.bottom = "10%"; }
+            else { document.getElementById('totop').style.bottom = "-50px"; }
+        });
+    </script>
+
+
+
+    <!-- 页面主要内容 -->
     <div class="container main-content">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
@@ -86,7 +287,7 @@
                 <p class="sub-text">探索铁路网络数据，发现智能出行方案</p>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-md-4">
                 <div class="feature-card text-center" onclick="window.location.href='/StationVis'">
@@ -111,7 +312,7 @@
             </div>
             <div class="col-md-6">
                 <div class="feature-card text-center" onclick="window.location.href='/ChartVis'">
-                    <i class="fas fa-chart-network feature-icon"></i>
+                    <i class="fas fa-network-wired feature-icon"></i>
                     <h3 style="color: white">站点连接关系</h3>
                     <p style="color: #8c8c8c">可视化展示站点间的网络拓扑结构</p>
                 </div>

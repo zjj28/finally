@@ -62,6 +62,10 @@ def ChartVis():
 def PathVis():
     return app.send_static_file("PathVis.html")
 
+@app.route("/index", methods=['GET', 'POST'])
+def index():
+    return app.send_static_file("index.html")
+
 # 前端由此路由获取最短路信息的json串
 @app.route("/GetPath", methods=['GET', 'POST'])
 def GetPath():

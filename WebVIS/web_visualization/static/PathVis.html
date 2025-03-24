@@ -13,31 +13,130 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        * {
+            text-decoration: none !important;
+        }
+
+
+        /* 导航栏容器 */
+        .shell {
+            width: 80px;
+            height: 525px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(17, 24, 39);
+            border-radius: 0 10px 10px 0;
+            /* 仅右侧圆角 */
+            transition: 0.3s;
+            overflow: hidden;
+            padding-bottom: 10px;
+            position: fixed;
+            /* 固定定位 */
+            z-index: 1000;
+            left: 0;
+            /* 紧贴左侧 */
+            top: 50%;
+            /* 垂直居中 */
+            transform: translateY(-50%);
+            /* 精确居中 */
+        }
+
+        /* 导航项 */
+        .box {
+            display: block;
+            height: 15%;
+            width: 85%;
+            margin: 9px;
+            border-radius: 5px;
+            position: relative;
+            transition: 0.3s;
+            color: rgb(160, 160, 175);
+        }
+
+        /* 图标基础样式 */
+        .box i {
+            position: absolute;
+        }
+
+        /* 第一个导航项下方的分隔线 */
+        .box:nth-child(1)::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(55, 65, 81);
+            position: absolute;
+            bottom: -10px;
+        }
+
+        /* 导航文字 */
+        .box span {
+            position: relative;
+            top: 22px;
+            left: 80px;
+            font: 500 20px '';
+            opacity: 0;
+            transition: 0.1s;
+        }
+
+        /* 悬停效果 */
+        .shell:hover {
+            width: 270px !important;
+        }
+
+        .box:hover {
+            background-color: rgb(55, 65, 81);
+            color: #fff;
+        }
+
+        .shell:hover span {
+            opacity: 1;
+        }
+
+        /* 各个图标的单独样式 */
+        .box:nth-child(1) i {
+            font-size: 33px;
+            margin: 20px 0 0 15px;
+        }
+
+        .box:nth-child(2) i {
+            font-size: 35px;
+            margin: 20px 0 0 20px;
+        }
+
+        .box:nth-child(3) i {
+            font-size: 33px;
+            margin: 20px 0 0 20px;
+        }
+
+        .box:nth-child(4) i {
+            font-size: 30px;
+            margin: 20px 0 0 16px;
+        }
+
+        .box:nth-child(5) i {
+            font-size: 30px;
+            margin: 20px 0 0 16px;
+        }
+
+        .box:nth-child(6) i {
+            font-size: 30px;
+            margin: 20px 0 0 16px;
+            color: #fff !important;
+
+        }
+    </style>
 </head>
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark"
-    style="position: absolute; height: 8%;z-index: 1; width:100%; font-size: 20px; text-align:center">
-    <a class="navbar-brand mr-auto" href="/" style="font-size: 25px">列车信息</a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/StationVis">站点信息</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/TrainVis">列车信息</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/AccessVis">站点可达性</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ChartVis">站点连接关系</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="/PathVis">路径规划</a>
-        </li>
-    </ul>
-</nav>
 
-<!-- 查询路线表单 -->
+
+
+
 <div
     style="color: aliceblue;font-size: 20px;position: absolute; right:0; bottom:0; z-index: 1; width:20%;height:50%;background-color:rgb(52, 58, 64);border-radius: 3%">
     <form id="form1" style="margin: 5%; height: 90%;" method="post">
@@ -53,23 +152,31 @@
                 <input type="radio" name="sortby" value="距离优先" style="width:16pt;height:16pt;"> 距离优先
             </p>
         </div>
-        <button id="submit-button" type="button" class="btn btn-primary" style="width:40%;height:15%;font-size: 16pt;">提交</button>
+        <button id="submit-button" type="button" class="btn btn-primary"
+            style="width:40%;height:15%;font-size: 16pt;">提交</button>
     </form>
     <!-- 删除右下角的路径显示区域 -->
     <!-- <div id="path" style="font-size: 30px; margin: 10%; height: 50%;"></div> -->
 </div>
 
 <body style="height: 100%; margin: 0">
+    <!-- 查询路线表单 -->
+    <div class="shell">
+        <a href="/index" class="box"><i class="fas fa-home feature-icon"></i><span>首页</span></a>
+        <a href="/StationVis" class="box"><i class="fas fa-map-marker-alt feature-icon"></i><span>站点信息</span></a>
+        <a href="/TrainVis" class="box"><i class="fas fa-train feature-icon"></i><span>列车信息</span></a>
+        <a href="/AccessVis" class="box"><i class="fas fa-project-diagram feature-icon"></i><span>站点可达性</span></a>
+        <a href="/ChartVis" class="box"><i class="fas fa-network-wired feature-icon"></i><span>站点关联关系</span></a>
+        <a href="/PathVis" class="box"><i class="fas fa-route feature-icon"></i><span>路径规划</span></a>
+    </div>
     <div id="main" style="height: 100%; margin: 0"></div>
     <script type="text/javascript">
 
         var chartDom = document.getElementById('main');
         var myChart = echarts.init(chartDom);
         var option;
-        $('#submit-button').click(function ()
-        {
-            $.get('/static/data/StationGeo.json', function (stationGeo) 
-            {
+        $('#submit-button').click(function () {
+            $.get('/static/data/StationGeo.json', function (stationGeo) {
                 $.ajax({
                     //几个参数需要注意一下
                     type: "POST",//方法类型
@@ -77,15 +184,14 @@
                     url: "/GetPath",//url
                     data: $('#form1').serialize(),
                     //contentType: 'application/json;charset=utf-8',
-                    success: function (jsData)
-                    {
+                    success: function (jsData) {
                         console.log(jsData);//打印服务端返回的数据(调试用)
-                        
+
                         // 检查是否是北京西到乌鲁木齐的路线
                         var start = $('#exampleInputEmail1').val().trim();
                         var end = $('#exampleInputPassword1').val().trim();
                         var sortby = $('input[name="sortby"]:checked').val();
-                        
+
                         if (start === '北京西' && end === '乌鲁木齐') {
                             // 根据选择的排序方式设置路径
                             if (sortby === '时间优先') {
@@ -98,34 +204,33 @@
                         } else {
                             path = jsData.path;
                         }
-                        
+
                         var str = "";
                         var f = true;
                         var points = [];
                         var pointsData = [];
-                        for (var i = 0; i < path.length; i++)
-                        {
+                        for (var i = 0; i < path.length; i++) {
                             if (!f) { str += '-'; }
                             str += path[i];
                             f = false;
                             var point = stationGeo[path[i]];
-                            
+
                             // 确保所有站点都有地理坐标
                             if (!point) {
                                 console.error('找不到站点坐标:', path[i]);
                                 // 使用默认坐标防止错误
                                 point = [104.114129, 37.550339];
                             }
-                            
+
                             points.push(point);
-                            
+
                             // 为每个点创建详细数据，包括名称和是否是起点/终点的标记
                             var pointData = {
                                 name: path[i],
                                 value: point,
                                 itemStyle: {}
                             };
-                            
+
                             // 设置起点和终点的特殊样式
                             if (i === 0) { // 起点
                                 pointData.itemStyle.color = '#1E90FF'; // 深蓝色
@@ -136,33 +241,33 @@
                             } else { // 中间站点
                                 pointData.itemStyle.color = 'orange';
                             }
-                            
+
                             pointsData.push(pointData);
                         }
                         str += "   ";
                         str += String(jsData.time);
                         console.log(points);
-                        
+
                         // 创建一个可拖动的HTML元素来显示路径信息
                         // 首先移除之前可能存在的路径信息元素
                         $('#draggable-path').remove();
-                        
+
                         // 添加新的路径信息元素
                         $('body').append(
                             '<div id="draggable-path" style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); ' +
                             'background-color: rgba(255, 255, 255, 0.9); padding: 10px 15px; border-radius: 5px; ' +
                             'cursor: move; z-index: 1000; font-size: 16px; color: #000; max-width: 80%; ' +
-                            'text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">' + 
-                            str + 
+                            'text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">' +
+                            str +
                             '</div>'
                         );
-                        
+
                         // 添加拖动功能
                         var dragElement = document.getElementById("draggable-path");
                         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-                        
+
                         dragElement.onmousedown = dragMouseDown;
-                        
+
                         function dragMouseDown(e) {
                             e = e || window.event;
                             e.preventDefault();
@@ -173,7 +278,7 @@
                             // 鼠标移动时调用elementDrag函数
                             document.onmousemove = elementDrag;
                         }
-                        
+
                         function elementDrag(e) {
                             e = e || window.event;
                             e.preventDefault();
@@ -186,13 +291,13 @@
                             dragElement.style.top = (dragElement.offsetTop - pos2) + "px";
                             dragElement.style.left = (dragElement.offsetLeft - pos1) + "px";
                         }
-                        
+
                         function closeDragElement() {
                             // 停止移动
                             document.onmouseup = null;
                             document.onmousemove = null;
                         }
-                        
+
                         myChart.setOption(option = {
                             tooltip: {
                                 trigger: 'item'
@@ -207,8 +312,7 @@
                                     type: 'scatter',
                                     coordinateSystem: 'bmap',
                                     data: pointsData,
-                                    symbolSize: function (val, params)
-                                    {
+                                    symbolSize: function (val, params) {
                                         return params.data.symbolSize || 15;
                                     },
                                     encode: {
@@ -239,8 +343,7 @@
                             ]
                         });
                     },
-                    error: function ()
-                    {
+                    error: function () {
                         alert("Error");
                     }
                 });
@@ -249,8 +352,7 @@
         //var echarts = require('echarts');
 
         // 显示可选站点
-        $.get('static/data/StationInfo.json', function (data)
-        {
+        $.get('static/data/StationInfo.json', function (data) {
             myChart.setOption(option = {
                 tooltip: {
                     trigger: 'item'
@@ -272,8 +374,7 @@
             bmap.addControl(scaleCtrl);
         });
 
-        if (option && typeof option === 'object')
-        {
+        if (option && typeof option === 'object') {
             myChart.setOption(option);
         }
 

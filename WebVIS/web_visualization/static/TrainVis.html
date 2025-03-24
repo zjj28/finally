@@ -13,31 +13,140 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        * {
+            text-decoration: none !important;
+        }
+
+
+        /* 导航栏容器 */
+        .shell {
+            width: 80px;
+            height: 525px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(17, 24, 39);
+            border-radius: 0 10px 10px 0;
+            /* 仅右侧圆角 */
+            transition: 0.3s;
+            overflow: hidden;
+            padding-bottom: 10px;
+            position: fixed;
+            /* 固定定位 */
+            z-index: 1000;
+            left: 0;
+            /* 紧贴左侧 */
+            top: 50%;
+            /* 垂直居中 */
+            transform: translateY(-50%);
+            /* 精确居中 */
+        }
+
+        /* 导航项 */
+        .box {
+            display: block;
+            height: 15%;
+            width: 85%;
+            margin: 9px;
+            border-radius: 5px;
+            position: relative;
+            transition: 0.3s;
+            color: rgb(160, 160, 175);
+        }
+
+        /* 图标基础样式 */
+        .box i {
+            position: absolute;
+        }
+
+        /* 第一个导航项下方的分隔线 */
+        .box:nth-child(1)::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(55, 65, 81);
+            position: absolute;
+            bottom: -10px;
+        }
+
+        /* 导航文字 */
+        .box span {
+            position: relative;
+            top: 22px;
+            left: 80px;
+            font: 500 20px '';
+            opacity: 0;
+            transition: 0.1s;
+        }
+
+        /* 悬停效果 */
+        .shell:hover {
+            width: 270px !important;
+        }
+
+        .box:hover {
+            background-color: rgb(55, 65, 81);
+            color: #fff;
+        }
+
+        .shell:hover span {
+            opacity: 1;
+        }
+
+        /* 各个图标的单独样式 */
+        .box:nth-child(1) i {
+            font-size: 33px;
+            margin: 20px 0 0 15px;
+        }
+
+        .box:nth-child(2) i {
+            font-size: 35px;
+            margin: 20px 0 0 20px;
+        }
+
+        .box:nth-child(3) i {
+            font-size: 33px;
+            margin: 20px 0 0 20px;
+            color: #fff !important;
+
+        }
+
+        .box:nth-child(4) i {
+            font-size: 30px;
+            margin: 20px 0 0 16px;
+        }
+
+        .box:nth-child(5) i {
+            font-size: 30px;
+            margin: 20px 0 0 16px;
+        }
+
+        .box:nth-child(6) i {
+            font-size: 30px;
+            margin: 20px 0 0 16px;
+        }
+    </style>
 </head>
 
-<!-- 导航栏 -->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="height: 8%; font-size: 20px; text-align:center">
-    <a class="navbar-brand mr-auto" href="/" style="font-size: 25px">列车信息</a>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/StationVis">站点信息</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="/TrainVis">列车信息</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/AccessVis">站点可达性</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ChartVis">站点连接关系</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/PathVis">路径规划</a>
-        </li>
-    </ul>
-</nav>
+
 
 <body style="height: 92%; margin: 0">
+
+    <!-- 查询路线表单 -->
+    <div class="shell">
+        <a href="/index" class="box"><i class="fas fa-home feature-icon"></i><span>首页</span></a>
+        <a href="/StationVis" class="box"><i class="fas fa-map-marker-alt feature-icon"></i><span>站点信息</span></a>
+        <a href="/TrainVis" class="box"><i class="fas fa-train feature-icon"></i><span>列车信息</span></a>
+        <a href="/AccessVis" class="box"><i class="fas fa-project-diagram feature-icon"></i><span>站点可达性</span></a>
+        <a href="/ChartVis" class="box"><i class="fas fa-network-wired feature-icon"></i><span>站点关联关系</span></a>
+        <a href="/PathVis" class="box"><i class="fas fa-route feature-icon"></i><span>路径规划</span></a>
+    </div>
+
     <div id="main" style="height: 100%; margin: 0"></div>
     <script type="text/javascript">
 
@@ -45,14 +154,12 @@
         var myChart = echarts.init(chartDom);
         var option;
         // 筛去部分高德地图定位有错误的点
-        var banList = ["董家口","老城镇","大明湖","白洋淀","军粮城北","城西","棋子湾","盘州","滨海","滨海北","金月湾","尖峰","乐东","黄流","兴隆镇","哈达铺","马兰","查干湖","尖山","临高南","谷山","白河","花园口","亚布力西","徐家店","昆玉", "观沙岭", "夏格庄", "杜拉尔", "沈家", "松江河", "松江南", "绥阳","大石头南", "东方红","东方","兴安北"];
+        var banList = ["董家口", "老城镇", "大明湖", "白洋淀", "军粮城北", "城西", "棋子湾", "盘州", "滨海", "滨海北", "金月湾", "尖峰", "乐东", "黄流", "兴隆镇", "哈达铺", "马兰", "查干湖", "尖山", "临高南", "谷山", "白河", "花园口", "亚布力西", "徐家店", "昆玉", "观沙岭", "夏格庄", "杜拉尔", "沈家", "松江河", "松江南", "绥阳", "大石头南", "东方红", "东方", "兴安北"];
         var banSet = new Set(banList);
 
-        $.get('static/data/StationInfo.json', function (data)
-        {
+        $.get('static/data/StationInfo.json', function (data) {
 
-            var station_points = [].concat(data.map(function (track)
-            {
+            var station_points = [].concat(data.map(function (track) {
                 var ls = [track.lon, track.lat];
                 if (track.trains == undefined)
                     ls.push([]);
@@ -63,40 +170,33 @@
                 return dic;
             }));
             // 按value排序
-            station_points = station_points.sort(function (a, b)
-            {
+            station_points = station_points.sort(function (a, b) {
                 return b.value[2] - a.value[2];
             }).splice(0, 1500);
             var validLs = [];
-            for(var i = 0; i < station_points.length; i++)
+            for (var i = 0; i < station_points.length; i++)
                 validLs.push(station_points[i].name);
             var validSet = new Set(validLs);
 
-            $.get('/static/data/MergedTrainInfo.json', function (trainData) 
-            {
-                $.get('/static/data/StationGeo.json', function (stationGeo) 
-                {
-                    trainData = trainData.sort(function (a, b)
-                    {
+            $.get('/static/data/MergedTrainInfo.json', function (trainData) {
+                $.get('/static/data/StationGeo.json', function (stationGeo) {
+                    trainData = trainData.sort(function (a, b) {
                         return b.forward.length - a.forward.length + b.backward.length - a.backward.length;
                     });
                     console.log(trainData)
                     var max_value = trainData[0].forward.length + trainData[0].backward.length;
                     var hStep = 300 / (trainData.length - 1);
                     var trainLines = [];
-                    for (var idx = 0; idx < trainData.length; idx++) 
-                    {
+                    for (var idx = 0; idx < trainData.length; idx++) {
                         var stations = trainData[idx].stations;
                         var points = [];
                         var prev = [];
                         var next = [];
                         var cur = [];
                         var value = trainData[idx].forward.length + trainData[idx].backward.length;
-                        for (var i = 0; i < stations.length; i++)
-                        {
+                        for (var i = 0; i < stations.length; i++) {
                             // 去除没有爬取成功的车站
-                            if (stationGeo[stations[i]] != undefined && validSet.has(stations[i])&& !banSet.has(stations[i]))
-                            {
+                            if (stationGeo[stations[i]] != undefined && validSet.has(stations[i]) && !banSet.has(stations[i])) {
                                 cur = stationGeo[stations[i]];
                                 //cur.push(value);
                                 if (cur.length == 2)
@@ -119,8 +219,7 @@
                     }
 
                     var map_style = [];
-                    $.get('static/data/MapStyleConfig.json', function (map_style_data)
-                    {
+                    $.get('static/data/MapStyleConfig.json', function (map_style_data) {
                         map_style = Object.values(map_style_data);
                         myChart.setOption(option = {
                             bmap: {
@@ -138,8 +237,7 @@
                                     type: 'scatter',
                                     coordinateSystem: 'bmap',
                                     data: station_points,
-                                    symbolSize: function (val)
-                                    {
+                                    symbolSize: function (val) {
                                         return 5;
                                     },
                                     encode: {

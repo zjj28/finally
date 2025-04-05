@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国日报 - 中国高铁发展专题</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1E63B0;
+            --secondary-color: #6C757D;
+            --light-gray: #F8F9FA;
+            --dark-gray: #333333;
+            --border-color: #E9ECEF;
+            --accent-blue: #E3F2FD;
+            --red-accent: #0f2d69;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            color: var(--dark-gray);
+            background-color: white;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Header Styles */
+        header {
+            width: 100%;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--red-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icons i {
+            margin-left: 20px;
+            color: var(--secondary-color);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            width: 70%;
+            padding-right: 40px;
+        }
+
+        .article-header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .article-header h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--red-accent);
+            margin: 15px 0 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .meta-text {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .author-name {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .article-date {
+            color: var(--secondary-color);
+            font-size: 14px;
+        }
+
+        .tags {
+            display: flex;
+            margin: 20px 0 30px;
+        }
+
+        .tag {
+            background-color: var(--accent-blue);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: 'Noto Sans SC', sans-serif;
+            margin-right: 10px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .image-caption {
+            font-style: italic;
+            color: var(--secondary-color);
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .article-body {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .article-body p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .article-body h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 24px;
+            margin: 40px 0 20px;
+            color: var(--dark-gray);
+        }
+
+        .pull-quote {
+            border-left: 4px solid var(--red-accent);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 22px;
+            color: var(--primary-color);
+            line-height: 1.5;
+        }
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 50px 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .like-bookmark {
+            display: flex;
+        }
+
+        .like-bookmark button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--secondary-color);
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .like-bookmark button:hover {
+            color: var(--primary-color);
+        }
+
+        .like-bookmark button span {
+            margin-left: 8px;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 14px;
+        }
+
+        .social-share {
+            display: flex;
+        }
+
+        .social-share a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-share a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 30%;
+            padding-left: 20px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trending-card,
+        .related-card {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .trending-card:last-child,
+        .related-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .card-image {
+            width: 80px;
+            height: 60px;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .card-content h4 {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 15px;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--secondary-color);
+        }
+
+        .newsletter-form {
+            background-color: var(--light-gray);
+            padding: 25px;
+            border-radius: 6px;
+        }
+
+        .newsletter-form h3 {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form p {
+            font-size: 14px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .newsletter-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--red-accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #B71C1C;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            width: 100%;
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comment {
+            display: flex;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+        }
+
+        .comment-time {
+            font-size: 13px;
+            color: var(--secondary-color);
+        }
+
+        .comment-text {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .comment-actions {
+            display: flex;
+        }
+
+        .comment-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--secondary-color);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .comment-actions button:hover {
+            color: var(--primary-color);
+        }
+
+        .comment-actions button span {
+            margin-left: 5px;
+        }
+
+        .add-comment {
+            margin-top: 40px;
+        }
+
+        .add-comment textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            min-height: 100px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .add-comment button {
+            padding: 10px 20px;
+            background-color: var(--red-accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-weight: 500;
+        }
+
+        /* More Articles Section */
+        .more-articles {
+            width: 100%;
+            margin: 60px 0;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .article-card {
+            cursor: pointer;
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .article-card h4 {
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            background-color: var(--light-gray);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            margin-right: 50px;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-family: 'Noto Sans SC', sans-serif;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social {
+            text-align: right;
+        }
+
+        .footer-social h4 {
+            font-family: 'Noto Sans SC', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .copyright {
+            color: var(--secondary-color);
+            font-size: 14px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+
+            .main-content,
+            .sidebar {
+                width: 100%;
+                padding: 0;
+            }
+
+            .sidebar {
+                margin-top: 50px;
+            }
+
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-right: 15px;
+                margin-bottom: 10px;
+            }
+
+            .header-icons {
+                margin-top: 20px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                margin-bottom: 30px;
+            }
+
+            .footer-links ul {
+                margin-right: 30px;
+                margin-bottom: 20px;
+            }
+
+            .footer-social {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">前沿聚焦</div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">动车风采</a></li>
+                    <li><a href="#">线路探秘</a></li>
+                    <li><a href="#">孪生视界</a></li>
+                    <li><a href="#">人物百科</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <article>
+                <div class="article-header">
+                    <h1>贯通！期待已久的西十高铁有重大进展！</h1>
+                </div>
+
+                <div class="article-meta">
+                    <img src="static/image/news-img/915.jpg" alt="作者" class="author-avatar">
+                    <div class="meta-text">
+                        <div class="author-name">西铁资讯</div>
+                        <div class="article-date">2025年4月5日 · 阅读时间1分钟</div>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">交通</span>
+                    <span class="tag">高铁</span>
+                    <span class="tag">科技创新</span>
+                </div>
+
+                <img src="static/image/news-img/施工.jpg" alt="复兴号高铁" class="featured-image">
+                <p class="image-caption">隧道内部施工</p>
+
+                <div class="article-body">
+                    <p>2025年4月2日，由西成客专陕西公司建设、中铁二十局承建的西十高铁柏朵山隧道顺利贯通。这一重要节点的实现，标志着西十高铁重难点隧道工程建设取得阶段性胜利，为全线后续施工奠定了坚实基础。
+                    </p>
+
+                    <h2>攻坚克难 科技创新保安全</h2>
+
+                    <p>柏朵山隧道全长4951.73米，为单洞双线隧道。该隧道地处断层破碎带，地质条件复杂，岩体呈碎裂状结构，施工难度大、风险高，是西十高铁全线的重难点控制性工程。
+
+                        为确保隧道施工安全有序推进，建设团队多措并举：
+
+                        创新采用"穿透式网格化"管理模式，动态优化施工组织。
+
+                        推广应用"喷射混凝土刮板"等五小创新成果。
+
+                        配备隧道门禁、人员定位、视频监控、应急喊话等智能系统。
+
+                        采用超前地质预报与三维激光扫描技术实时调整支护参数。
+                    </p>
+
+                    <div class="pull-quote">
+                        "中国高铁的成功不是偶然，而是国家战略、科技创新和工程管理完美结合的典范。" —— 中国工程院院士 王梦恕
+                    </div>
+
+                    <p>针对隧道与西气东输管道交叉的施工难题，项目团队创新采用三台阶法与钻爆法相结合的施工工艺，通过加强现场监控、严格控制爆破参数等措施，确保了交叉段施工安全。施工过程中，技术人员实时掌握开挖面地质变化情况，精确控制爆破振动速度，实现了安全质量"双确保"。
+                    </p>
+
+                    <img src="static/image/news-img/施工2.jpg
+                    " alt="高铁内部"
+                        style="width:100%; height:auto; border-radius:4px; margin:20px 0; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+                    <p class="image-caption">隧道横截面夜间施工</p>
+
+                    <h2>战略意义 促进区域协同</h2>
+
+                    <p>西十高铁的建设将进一步完善全国高速铁路网络布局，其开通运营将：</p>
+
+                    <p><strong>显著缩短陕西与长三角、珠三角地区的时空距离</strong></p>
+
+                    <p><strong>加强关中城市群与长江中游城市群的互联互通</strong></p>
+
+                    <p><strong>带动秦巴山区乡村振兴和经济社会发展</strong></p>
+
+                    <p><strong>为共建"一带一路"、长江经济带发展和西部大开发等国家战略提供有力支撑</strong></p>
+
+                    <p>此次柏朵山隧道的顺利贯通，为西十高铁按期建成通车创造了有利条件。项目建成后，将极大改善沿线地区交通条件，促进区域经济社会协调发展。</p>
+
+
+                    <div class="article-footer">
+                        <div class="like-bookmark">
+                            <button id="like-button"><i class="far fa-heart"></i> <span>3</span></button>
+                            <button id="bookmark-button"><i class="far fa-bookmark"></i> <span>收藏</span></button>
+                        </div>
+                        <div class="social-share">
+                            <a href="#" aria-label="分享到微博"><i class="fab fa-weibo"></i></a>
+                            <a href="#" aria-label="分享到微信"><i class="fab fa-weixin"></i></a>
+                            <a href="#" aria-label="分享到QQ"><i class="fab fa-qq"></i></a>
+                            <a href="#" aria-label="复制链接"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+            </article>
+
+            <section class="comments-section">
+                <h2 class="section-title">网友评论 (1)</h2>
+
+                <div class="comment">
+                    <img src="static/image/news-img/春运报平安.jpg" alt="用户" class="comment-avatar">
+                    <div class="comment-content">
+                        <div class="comment-header">
+                            <span class="comment-author">NULL</span>
+                            <span class="comment-time">2天前</span>
+                        </div>
+                        <p class="comment-text">高铁促进国家发展</p>
+                        <div class="comment-actions">
+                            <button><i class="far fa-thumbs-up"></i> <span>0</span></button>
+                            <button><i class="far fa-comment"></i> <span>回复</span></button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="add-comment">
+                    <h3>发表评论</h3>
+                    <textarea placeholder="分享您的观点..."></textarea>
+                    <button>提交评论</button>
+                </div>
+            </section>
+
+            <section class="more-articles">
+                <h2 class="section-title">更多相关报道</h2>
+                <div class="articles-grid">
+                    <div class="article-card">
+                        <img src="static/image/lunbo/郑开城际铁路全线贯通运营.png">
+                        <h4>时速400公里！我国高速磁浮交通系统取得突破性进展</h4>
+                    </div>
+                    <div class="article-card">
+                        <img src="static/image/lunbo/春日铁路建设忙.jpg" alt="智能高铁">
+                        <h4>智能高铁时代来临：5G+AI如何改变未来出行体验</h4>
+                    </div>
+                    <div class="article-card">
+                        <img src="static/image/xuanzhuan/02.jpg" alt="一带一路">
+                        <h4>雅万高铁正式开通：中国高铁技术走出国门的第一站</h4>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">今日热点</h3>
+
+                <div class="trending-card">
+                    <img src="static/image/gaotie/CR200J3.jpg" alt="热点" class="card-image">
+                    <div class="card-content">
+                        <h4>五一假期全国铁路预计发送旅客1.2亿人次</h4>
+                        <div class="card-meta">4小时前 · 旅游</div>
+                    </div>
+                </div>
+                <div class="trending-card">
+                    <img src="static/image/xuanzhuan/03.jpeg" alt="热点" class="card-image">
+                    <div class="card-content">
+                        <h4>中国高铁"走出去"再添新项目：中泰铁路进展顺利</h4>
+                        <div class="card-meta">6小时前 · 国际</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">相关报道</h3>
+                <div class="related-card">
+                    <img src="static/image/lunbo/开往春天的列车.png" alt="相关" class="card-image">
+                    <div class="card-content">
+                        <h4>揭秘"复兴号"成渝中线高铁开工建设：设计时速400公里</h4>
+                        <div class="card-meta">2025年3月28日</div>
+                    </div>
+                </div>
+
+                <div class="related-card">
+                    <img src="static/image/timeline/6.jpg" alt="相关" class="card-image">
+                    <div class="card-content">
+                        <h4>中国高铁安全运营十周年：零重大事故的秘诀</h4>
+                        <div class="card-meta">2025年3月15日</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="newsletter-form">
+                    <h3>订阅每日新闻</h3>
+                    <p>注册获取更多信息</p>
+                    <input type="email" placeholder="输入您的电子邮箱">
+                    <button>立即订阅</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">智能问答</a></li>
+                </ul>
+
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>关注我们</h4>
+                <div class="social-share">
+                    <a href="#" aria-label="微博"><i class="fab fa-weibo"></i></a>
+                    <a href="#" aria-label="微信"><i class="fab fa-weixin"></i></a>
+                    <a href="#" aria-label="抖音"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="今日头条"><i class="fab fa-buffer"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        // 点赞功能
+        const likeButton = document.getElementById('like-button');
+        let likeCount = 1248;
+        let isLiked = false;
+
+        likeButton.addEventListener('click', function () {
+            if (!isLiked) {
+                likeCount++;
+                this.innerHTML = '<i class="fas fa-heart"></i> <span>' + likeCount + '</span>';
+                this.querySelector('i').style.color = '#ff4d4d';
+                isLiked = true;
+            } else {
+                likeCount--;
+                this.innerHTML = '<i class="far fa-heart"></i> <span>' + likeCount + '</span>';
+                this.querySelector('i').style.color = '';
+                isLiked = false;
+            }
+        });
+
+        // 收藏功能
+        const bookmarkButton = document.getElementById('bookmark-button');
+        let isBookmarked = false;
+
+        bookmarkButton.addEventListener('click', function () {
+            if (!isBookmarked) {
+                this.innerHTML = '<i class="fas fa-bookmark"></i> <span>已收藏</span>';
+                isBookmarked = true;
+                alert('文章已添加到您的收藏夹');
+            } else {
+                this.innerHTML = '<i class="far fa-bookmark"></i> <span>收藏</span>';
+                isBookmarked = false;
+                alert('文章已从收藏夹移除');
+            }
+        });
+
+        // 复制链接功能
+        const copyLinkButton = document.querySelector('.social-share a:last-child');
+        copyLinkButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(function () {
+                const originalIcon = copyLinkButton.innerHTML;
+                copyLinkButton.innerHTML = '<i class="fas fa-check"></i>';
+                copyLinkButton.style.backgroundColor = '#4CAF50';
+                setTimeout(function () {
+                    copyLinkButton.innerHTML = originalIcon;
+                    copyLinkButton.style.backgroundColor = '';
+                }, 2000);
+                alert('链接已复制到剪贴板');
+            });
+        });
+
+        // 评论表单提交
+        const commentForm = document.querySelector('.add-comment');
+        const commentTextarea = commentForm.querySelector('textarea');
+        const commentButton = commentForm.querySelector('button');
+
+        commentButton.addEventListener('click', function () {
+            const commentText = commentTextarea.value.trim();
+            if (commentText) {
+                // 在实际应用中，这里会发送到服务器
+                alert('评论已提交！感谢您的参与。');
+                commentTextarea.value = '';
+
+                // 模拟添加新评论
+                const commentsSection = document.querySelector('.comments-section');
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.innerHTML = `
+                <img src="https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 100)}.jpg" alt="用户" class="comment-avatar">
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">新用户</span>
+                        <span class="comment-time">刚刚</span>
+                    </div>
+                    <p class="comment-text">${commentText}</p>
+                    <div class="comment-actions">
+                        <button><i class="far fa-thumbs-up"></i> <span>0</span></button>
+                        <button><i class="far fa-comment"></i> <span>回复</span></button>
+                    </div>
+                </div>
+            `;
+                commentsSection.insertBefore(newComment, commentForm);
+
+                // 更新评论计数
+                const commentsTitle = document.querySelector('.comments-section .section-title');
+                const currentCount = parseInt(commentsTitle.textContent.match(/\d+/)[0]);
+                commentsTitle.textContent = commentsTitle.textContent.replace(/\d+/, currentCount + 1);
+            } else {
+                alert('请输入评论内容后再提交。');
+            }
+        });
+
+        // 新闻订阅表单
+        const newsletterForm = document.querySelector('.newsletter-form');
+        const newsletterInput = newsletterForm.querySelector('input');
+        const newsletterButton = newsletterForm.querySelector('button');
+
+        newsletterButton.addEventListener('click', function () {
+            const email = newsletterInput.value.trim();
+            if (email && email.includes('@')) {
+                // 在实际应用中，这里会发送到服务器
+                alert('感谢您的订阅！您将每日收到我们的精选内容。');
+                newsletterInput.value = '';
+            } else {
+                alert('请输入有效的电子邮箱地址。');
+            }
+        });
+
+        // 移动端响应式导航
+        const nav = document.querySelector('nav ul');
+        const headerIcons = document.querySelector('.header-icons');
+
+        function checkScreenSize() {
+            if (window.innerWidth <= 768) {
+                // 移动端视图
+                nav.style.display = 'none';
+                headerIcons.style.display = 'none';
+
+                // 创建移动菜单按钮
+                const existingMenuButton = document.querySelector('.header-container .menu-button');
+                if (!existingMenuButton) {
+                    const menuButton = document.createElement('button');
+                    menuButton.className = 'menu-button';
+                    menuButton.innerHTML = '<i class="fas fa-bars"></i>';
+                    menuButton.style.background = 'none';
+                    menuButton.style.border = 'none';
+                    menuButton.style.fontSize = '24px';
+                    menuButton.style.cursor = 'pointer';
+                    menuButton.style.marginLeft = 'auto';
+
+                    menuButton.addEventListener('click', function () {
+                        if (nav.style.display === 'none' || !nav.style.display) {
+                            nav.style.display = 'flex';
+                            headerIcons.style.display = 'flex';
+                        } else {
+                            nav.style.display = 'none';
+                            headerIcons.style.display = 'none';
+                        }
+                    });
+
+                    const headerContainer = document.querySelector('.header-container');
+                    headerContainer.appendChild(menuButton);
+                }
+            } else {
+                // 桌面端视图
+                nav.style.display = 'flex';
+                headerIcons.style.display = 'flex';
+
+                // 移除移动菜单按钮
+                const existingMenuButton = document.querySelector('.header-container .menu-button');
+                if (existingMenuButton) {
+                    existingMenuButton.remove();
+                }
+            }
+        }
+
+        // 页面加载和窗口大小改变时检查
+        window.addEventListener('load', checkScreenSize);
+        window.addEventListener('resize', checkScreenSize);
+
+        // 文章卡片点击效果
+        const articleCards = document.querySelectorAll('.article-card, .trending-card, .related-card');
+        articleCards.forEach(card => {
+            card.addEventListener('click', function () {
+                // 在实际应用中，这里会跳转到对应文章页面
+                alert('在实际应用中，这里将跳转到文章详情页');
+            });
+        });
+
+        // 评论点赞功能
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('fa-thumbs-up') || e.target.parentElement.classList.contains('fa-thumbs-up')) {
+                const button = e.target.classList.contains('fa-thumbs-up') ? e.target.parentElement : e.target;
+                const span = button.querySelector('span');
+                let count = parseInt(span.textContent);
+
+                if (button.classList.contains('far')) {
+                    // 未点赞状态
+                    button.classList.remove('far');
+                    button.classList.add('fas');
+                    span.textContent = count + 1;
+                    button.style.color = var(--primary - color);
+                } else {
+                    // 已点赞状态
+                    button.classList.remove('fas');
+                    button.classList.add('far');
+                    span.textContent = count - 1;
+                    button.style.color = '';
+                }
+            }
+        });
+    </script>
+
+</body>

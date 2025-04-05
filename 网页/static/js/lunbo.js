@@ -16,39 +16,39 @@ class Slide {
     // 图片对象数组
     this.banners = [
       {
-        imageName: '01.jpg',
-        title: 'CR450 如何做到世界最快？',
-        link: 'https://news.cctv.com/2025/01/03/ARTI0agJxQIhb46wN0UKxnyr250103.shtml'
+        imageName: '施工.jpg',
+        title: '期待已久的西十高铁重大进展！',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/tpxx/202412/t20241226_347607.shtml'
       },
       {
-        imageName: '02.jpg',
-        title: '客货两旺 中老铁路“黄金大通道”作用持续显现',
-        link: 'https://news.cctv.com/2025/02/22/ARTIRwayUHEDOk8Sw02j6wgr250222.shtml'
+        imageName: '春节不停工，世界最长海底隧道进行中.jpg',
+        title: '春节不停工，世界最长海底隧道进行中',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/spxx/202502/t20250206_348109.shtml'
       },
       {
-        imageName: '04.jpg',
-        title: '1月全国铁路发送旅客3.69亿人次',
-        link: 'https://example.com/news3'
+        imageName: '春日铁路建设忙.jpg',
+        title: '春日铁路建设忙',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/tpxx/202502/t20250226_348180.shtml'
       },
       {
-        imageName: '03.jpg',
-        title: '铁路“守桥人”的青春足迹',
-        link: 'https://example.com/news4'
+        imageName: '费东斌局长会见匈牙利交通局副局长.jpg',
+        title: '费东斌局长会见匈牙利交通局副局长',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/tpxx/202501/t20250114_348006.shtml'
       },
       {
-        imageName: '05.jpg',
-        title: '高铁知多少 | 为什么高铁列车始终使用远光灯？',
-        link: 'https://example.com/news5'
+        imageName: '奋力推动铁路高质量发展.jpg',
+        title: '奋力推动铁路高质量发展',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/tpxx/202412/t20241226_347604.shtml'
       },
       {
-        imageName: '06.jpg',
-        title: '智能手表贴在高铁车窗为何取不下来',
-        link: 'https://example.com/news6'
+        imageName: '开往春天的列车.png',
+        title: '开往春天的列车',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/tpxx/202503/t20250326_348294.shtml'
       },
       {
-        imageName: '07.jpg',
-        title: '我国在建最北高铁哈伊高铁首座站房完工',
-        link: 'https://example.com/news7'
+        imageName: '郑开城际铁路全线贯通运营.png',
+        title: '郑开城际铁路全线贯通运营',
+        link: 'https://www.nra.gov.cn/xwzx/tpsp/tpxx/202503/t20250317_348254.shtml'
       },
       // 可以继续增加图片
     ];

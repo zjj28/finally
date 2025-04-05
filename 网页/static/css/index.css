@@ -496,7 +496,7 @@ li:nth-child(6) .card {
     opacity: 0.5;
     box-shadow: 0px 18px 36px -18px rgba(12, 5, 46, 0.3), 0px 30px 60px -12px rgba(5, 29, 46, 0.25);
     border-radius: 50%;
-    background-image: url(/static/image/xuanzhuan/04.jpg);
+    background-image: url(../../static/image/xuanzhuan/04.jpg) !important;
 }
 
 /*设置最后一个圆样式 */
@@ -511,7 +511,7 @@ li:nth-child(6) .card {
     opacity: 0.25;
     border-radius: 50%;
     box-shadow: 0px 18px 36px -18px rgba(5, 30, 46, 0.3), 0px 30px 60px -12px rgba(12, 5, 46, 0.25);
-    background-image: url(/static/image/xuanzhuan/04.jpg);
+    background-image: url(../../static/image/xuanzhuan/04.jpg) !important;
 }
 
 /*设置裁剪样式*/
@@ -580,7 +580,8 @@ li:nth-child(6) .card {
     /* 竖直居中 */
     align-items: center;
     /* 水平居中 */
-    height: 100%;
+    height: 95%;
+    margin-right: 5% !important;
     /* 确保父容器有高度 */
 
 }
